@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+// important
+$imt : unquote('!important');
+
+// item length
+$itemLength : 800;
+
+// Basic
+$color-green:#9CD631 !default;
+$color-mint:#30D1CD !default;
+$color-blue:#146EE6 !default;
+$color-yellow:#FCBF45 !default;
+$color-red:#F85442 !default;
+$color-dark-grey:#232836 !default;
+$color-medium-grey: #42495F !default;
+$color-grey: #7D88A5 !default;
+$color-grey2: #C9D0DE !default;
+$color-light-grey: #E8E8E8 !default;
+$color-light-grey2: #F8F8F8 !default;
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+
+$colors: () !default;
+$colors: map-merge(
+    (
+      "green" :         $color-green,  
+      "mint" :          $color-mint,
+      "blue" :          $color-blue,
+      "yellow" :        $color-yellow,   
+      "red" :           $color-red,  
+      "dark-grey" :     $color-dark-grey,
+      "medium-grey" :   $color-medium-grey,
+      "grey":           $color-grey,
+      "grey2":          $color-grey2,
+      "light-grey":     $color-light-grey,
+      "light-grey2":    $color-light-grey2,
+      "white":          $color-white,
+      "black":          $color-black,
+    ),
+    $colors
+);
