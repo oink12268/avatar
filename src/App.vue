@@ -3,16 +3,16 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: 'App',
   components: {
   },
   setup() {
-    // console.log('test')
-    // axios.get('/oauth2/authorization/google').then((res) => {
-    //   console.log('KSH::Court', res.data)
-    // })
+    axios.get('/oauth2/authorization/google').then((res) => {
+      console.log('KSH::Court', res.data)
+    })
 
     const event = {
       click: ()=> {
