@@ -1,15 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" @click="event.click">
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+  },
+  setup() {
+    // console.log('test')
+    // axios.get('/oauth2/authorization/google').then((res) => {
+    //   console.log('KSH::Court', res.data)
+    // })
+
+    const event = {
+      click: ()=> {
+        console.log('click')
+        location.href = 'http://localhost:8080/oauth2/authorization/google'
+      },
+    }
+
+    return {
+      event
+    }
   }
 }
 </script>
