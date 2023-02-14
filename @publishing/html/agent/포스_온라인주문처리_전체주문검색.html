@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Comaptible" content="IE=edge, chrome=1">
+<title>공통!</title>
+<!-- SEO: 검색 엔진 최적화 설정 -->
+<meta name="description" content="푸드테크">
+<meta name="keywords" content="푸드테크, ...">
+<!-- 모바일 설정 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../scss/import.css">
+</head>
+<body>
+
+  <!-- 루트 엘리먼트 : 시작 -->
+  <div class="root-wrap tablet-size">
+
+    <!-- 타이틀 바 : 시작 -->
+    <div class="title-bar">
+      <button class="button-history"><i class="ic24_arrow_l_bold ic_medium-grey"></i></button>
+      <h3>주문 검색</h3>
+      <button></button>
+    </div>
+    <!-- 타이틀 바 : 끝 -->
+
+    <!-- 고정영역 : 시작 -->
+    <div class="container ph-16">
+      <div class="dp-f container pv-2 align-items-center bd-grey2-b01">
+        <div class="flex1">
+          <!-- 인풋  : 시작 // 값이 있거나 포커스 상태일때에 active 클래스 추가! -->
+          <div class="input-field-line-con icon bd-n">
+            <input type="text" class="ta-c" placeholder="2022-04-26" value="2022-04-26" readonly>
+            <button class="input-icon">
+              <i class="ic24_calendar ic_medium-grey"></i>
+            </button>
+          </div>
+          <!-- 인풋  : 끝 -->
+        </div>
+        <span class="fc-medium-grey">~</span>
+        <div class="flex1">
+          <!-- 인풋  : 시작 // 값이 있거나 포커스 상태일때에 active 클래스 추가! -->
+          <div class="input-field-line-con icon bd-n">
+            <input type="text" class="ta-c" placeholder="2022-04-26" value="2022-04-26" readonly>
+            <button class="input-icon">
+              <i class="ic24_calendar ic_medium-grey"></i>
+            </button>
+          </div>
+          <!-- 인풋  : 끝 -->
+        </div>
+        <button class="wd-60 ta-c fw-500 flex-shrink-none">초기화</button>
+      </div>
+      <div class="container pv-6">
+        <div class="tab-list-con container after-none">
+          <ul class="tab-type-e">
+            <li class="active">전체</li>
+            <li>주문채절</li>
+            <li>결제수단</li>
+            <li>주문상태</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container ph-16 bg-light-grey2">
+      <div class="dp-f container hp-44 align-items-center fs-10 fc-medium-grey bd-light-grey-b01">
+        <div class="flex1 ta-c">주문번호</div>
+        <div class="flex1 ta-c">주문시각</div>
+        <div class="flex1 ta-c">주문타입</div>
+        <div class="flex1 ta-c">주문채널</div>
+        <div class="flex1 ta-c wd-65 flex-shrink-none">결제수단</div>
+        <div class="flex1 ta-c wd-70 flex-shrink-none">주문금액</div>
+        <div class="flex1 ta-c">주문상태</div>
+        <div class="flex1 ta-c">경과시간</div>
+      </div>
+    </div>
+    <!-- 고정영역 : 끝 -->
+
+    <!-- 컨텐츠 스크롤 영역 : 시작 -->
+    <div class="content-scroll scroll-195">
+      <div class="container ph-16">
+
+
+        <!-- 리스트 아이템 : 시작 -->
+        <div class="pos-table-list">
+          <div class="flex1 ta-c">0010</div>
+          <div class="flex1 ta-c fs-10">
+            <div>21.03.24</div>
+            <div>10:15</div>
+          </div>
+          <div class="flex1 ta-c">
+            <div>배달</div>
+          </div>
+          <div class="flex1 ta-c lh-00">
+            <img class="wh-28" src="../../images/shop-logo.jpg">
+          </div>
+          <div class="flex1 ta-c wd-65 flex-shrink-none">후불(현금)</div>
+          <div class="flex1 ta-c wd-70 flex-shrink-none">91,000,000</div>
+          <div class="flex1 ta-c">대기중</div>
+          <div class="flex1 ta-c">
+            <span class="fc-blue">1분</span>
+          </div>
+        </div>
+        <!-- 리스트 아이템 : 끝 -->
+
+        <!-- 리스트 아이템 : 시작 -->
+        <div class="pos-table-list">
+          <div class="flex1 ta-c">0010</div>
+          <div class="flex1 ta-c fs-10">
+            <div>21.03.24</div>
+            <div>10:15</div>
+          </div>
+          <div class="flex1 ta-c">
+            <span class="badge bg-red">예약</span>
+            <div>포장</div>
+          </div>
+          <div class="flex1 ta-c lh-00">
+            <img class="wh-28" src="../../images/shop-logo.jpg">
+          </div>
+          <div class="flex1 ta-c wd-65 flex-shrink-none">후불(현금)</div>
+          <div class="flex1 ta-c wd-70 flex-shrink-none">주문금액</div>
+          <div class="flex1 ta-c">대기중</div>
+          <div class="flex1 ta-c">
+            <span class="fc-red">107분</span>
+          </div>
+        </div>
+        <!-- 리스트 아이템 : 끝 -->
+
+      <!-- 리스트 없을때 : 시작 -->
+      <div class="no-data-list flex-center flex-column" style="height:calc(100vh - 195px);">
+        <img src="../../images/ic_empty2_24.svg">
+        <p class="fc-grey">주문내역이 없습니다.</p>
+      </div>
+      <!-- 리스트 없을때 : 끝 -->
+
+
+      </div>
+    </div>
+    <!-- 컨텐츠 스크롤 영역 :  끝 -->
+
+  </div>
+  <!-- 루트 엘리먼트 : 끝 -->
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+@each $color, $value in $colors {
+ .fc-#{$color}{
+   color: #{$value} $imt;
+ }
+ .bg-#{$color}{
+   background-color: #{$value} $imt;
+ }
+}
+
+// 아이콘 색상
+.ic_green{filter: invert(72%) sepia(17%) saturate(1785%) hue-rotate(37deg) brightness(110%) contrast(79%);}
+.ic_mint{filter: invert(74%) sepia(80%) saturate(444%) hue-rotate(118deg) brightness(90%) contrast(81%);}
+.ic_blue{filter: invert(35%) sepia(53%) saturate(3344%) hue-rotate(203deg) brightness(91%) contrast(100%);}
+.ic_yellow{filter: invert(96%) sepia(69%) saturate(7421%) hue-rotate(319deg) brightness(100%) contrast(98%);}
+.ic_red{filter: invert(44%) sepia(100%) saturate(2400%) hue-rotate(335deg) brightness(99%) contrast(97%);}
+.ic_dark-grey{filter: invert(10%) sepia(25%) saturate(759%) hue-rotate(185deg) brightness(104%) contrast(88%);}
+.ic_medium-grey{filter: invert(27%) sepia(13%) saturate(974%) hue-rotate(188deg) brightness(96%) contrast(91%);}
+.ic_grey{filter: invert(56%) sepia(32%) saturate(265%) hue-rotate(185deg) brightness(90%) contrast(91%);}
+.ic_grey2{filter: invert(90%) sepia(13%) saturate(212%) hue-rotate(182deg) brightness(92%) contrast(89%);}
+.ic_light-grey{filter: invert(99%) sepia(6%) saturate(464%) hue-rotate(190deg) brightness(112%) contrast(82%);}
+.ic_light-grey2{filter: invert(99%) sepia(4%) saturate(67%) hue-rotate(76deg) brightness(117%) contrast(95%);}
+.ic_white{filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(30deg) brightness(104%) contrast(101%);}
+.ic_black{filter: invert(0%) sepia(100%) saturate(7%) hue-rotate(164deg) brightness(97%) contrast(104%);}
+
+/* background-color */
+.bg-n{background: none $imt;}
+.bg-img-n{background-image: none $imt;}
+.bg-transparent{background-color: transparent $imt;}

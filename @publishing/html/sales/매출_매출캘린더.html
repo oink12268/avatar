@@ -1,0 +1,517 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Comaptible" content="IE=edge, chrome=1">
+<title>공통!</title>
+<!-- SEO: 검색 엔진 최적화 설정 -->
+<meta name="description" content="푸드테크">
+<meta name="keywords" content="푸드테크, ...">
+<!-- 모바일 설정 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../scss/import.css">
+</head>
+<body>
+
+  <!-- 루트 엘리먼트 : 시작 -->
+  <div class="root-wrap">
+
+    <!-- 타이틀 바 : 시작 -->
+    <div class="title-bar">
+      <button class="button-history"><i class="ic24_arrow_l_bold ic_medium-grey"></i></button>
+      <h3>매출 리포트</h3>
+      <!-- 툴팁 호출 버튼 클릭시 아이콘 토글시켜주세요! -->
+      <button class="tooltip">
+        <i class="ic24_question ic_grey"></i>
+        <!-- <i class="ic24_question_filled ic_dark-grey"></i> -->
+      </button>
+    </div>
+    <!-- 타이틀 바 : 끝 -->
+
+    <!-- 컨텐츠 스크롤 영역 : 시작 -->
+    <div class="content-scroll scroll-54">
+      <div class="container ph-16">
+
+        <div class="dp-f container pv-12 align-items-center">
+          <div class="fs-12 fc-grey">오후 18:30 기준</div>
+          <button class="dp-if align-items-center ml-at">
+            <i class="ic24_refresh wh-18 ic_black"></i>
+            <span class="fs-12 ml-2">새로고침</span>
+          </button>
+        </div>
+
+            <!-- 달력 : 시작 -->
+            <div class="calendar-wrap">
+              <div class="calendar-controller">
+
+                <button class="ps-a top-15 left-30 button-outline small bd-light-grey fc-dark-grey">오늘</button>
+                <button class="ic24_arrow_l_bold ic_medium-grey"></button>
+                <div class="calendar-title">2022년 4월</div>
+                <button class="ic24_arrow_r_bold ic_medium-grey"></button>
+              </div>
+
+              <div class="calendar-box">
+                <div class="calendar-week-title">
+                  <div class="calendar-cell fc-red">일</div>
+                  <div class="calendar-cell">월</div>
+                  <div class="calendar-cell">화</div>
+                  <div class="calendar-cell">수</div>
+                  <div class="calendar-cell">목</div>
+                  <div class="calendar-cell">금</div>
+                  <div class="calendar-cell">토</div>
+                </div>
+
+                <!-- 주간 : 시작 //  공휴일 일때에 fc-red 추가 ---->
+                <div class="calendar-week">
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l fc-red">1</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">2</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-6" ></span>
+                      </div>
+                      <div class="fs-8 fc-grey ta-c">500,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">3</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-10" ></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">4</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-14"></span>
+                      </div>
+                      <div class="fs-8 fc-grey ta-c">500,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">5</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-18"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">6</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="fs-8 fc-grey ta-c">500,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">7</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- 주간 : 끝 -->
+
+                <!-- 주간 : 시작 //  공휴일 일때에 fc-red 추가 ---->
+                <div class="calendar-week">
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l fc-red">8</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">9</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">10</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">11</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">12</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">13</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">14</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- 주간 : 끝 -->
+
+                <!-- 주간 : 시작 //  공휴일 일때에 fc-red 추가 ---->
+                <div class="calendar-week">
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l fc-red">15</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">16</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">17</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">18</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">19</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">20</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">21</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- 주간 : 끝 -->
+
+                <!-- 주간 : 시작 //  공휴일 일때에 fc-red 추가 ---->
+                <div class="calendar-week">
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l fc-red">22</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">23</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">24</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">25</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">26</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">27</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">29</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- 주간 : 끝 -->
+
+                <!-- 주간 : 시작 //  공휴일 일때에 fc-red 추가 ---->
+                <div class="calendar-week">
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l fc-red">30</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">31</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell disabled">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">1</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell disabled">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">2</div>
+                      <div class="container ta-c wh-20 mh-at">
+                        <span class="circle circle-size-2"></span>
+                      </div>
+                      <div class="calendar-price">50,000,000</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell disabled">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">3</div>
+                      <div class="container ta-c wh-20 mh-at"></div>
+                      <div class="fs-8 fc-grey ta-c"></div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell disabled">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">4</div>
+                      <div class="container ta-c wh-20 mh-at"></div>
+                      <div class="fs-8 fc-grey ta-c"></div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell disabled">
+                    <div class="container ph-4">
+                      <div class="fs-10 ta-l">5</div>
+                      <div class="container ta-c wh-20 mh-at"></div>
+                      <div class="fs-8 fc-grey ta-c"></div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- 주간 : 끝 -->
+              </div>
+
+            </div>
+            <!-- 달력 : 끝 -->
+
+
+
+
+
+
+        <!-- 총 주문 : 시작 -->
+        <div class="dp-f pv-12 align-items-center mt-24">
+          <div class="fs-16 fw-900">총 주문건수</div>
+          <button class="button-outline small bd-light-grey fc-medium-grey ml-at">상세보기</button>
+        </div>
+        <div class="container pb-24">
+          <div class="pv-12">
+            <div class="pa-12 bdr-8 bg-light-grey2">
+              <div class="">
+                <div class="flex-center">
+                  <span class="fs-24 fw-900 fc-blue">151</span>
+                  <span class="fs-16 ml-3">건</span>
+                </div>
+                <div class="flex-center pt-6 ta-r fs-14 fc-medium-grey">
+                  <span class="">전주 대비</span>
+                  <span class="ml-3 fc-blue">+200,000</span>
+                  <span class="ml-3">건</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 총 주문 : 끝 -->
+
+        <!-- 총 매출 : 시작 -->
+        <div class="dp-f pv-12 align-items-center">
+          <div class="fs-16 fw-900">총 매출</div>
+          <button class="button-outline small bd-light-grey fc-medium-grey ml-at">상세보기</button>
+        </div>
+        <div class="container pb-24">
+          <div class="pv-12">
+            <div class="pa-12 bdr-8 bg-light-grey2">
+              <div class="">
+                <div class="flex-center">
+                  <span class="fs-24 fw-900 fc-blue">1,670,000</span>
+                  <span class="fs-16 ml-3">원</span>
+                </div>
+                <div class="flex-center pt-6 ta-r fs-14 fc-medium-grey">
+                  <span class="">전주 대비</span>
+                  <span class="ml-3 fc-blue">+200,000</span>
+                  <span class="ml-3">원</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dp-f align-items-center container pa-12 bdr-8 min-width-0 fc-white mt-12 bg-medium-grey">
+              <i class="ic24_time ic_white flex-shrink-none"></i>
+              <div class="flex1 fw-500 ellipsis ph-6">시간대별 매출</div>
+              <button class="dp-if align-items-center ml-at">
+                <span class="fs-12">상세보기</span>
+                <i class="ic12_arrow_r ic_white flex-shrink-none"></i>
+              </button>
+            </div>
+
+            <div class="dp-f align-items-center container pa-12 bdr-8 min-width-0 fc-white mt-12 bg-medium-grey">
+              <i class="ic24_chicken ic_white flex-shrink-none"></i>
+              <div class="flex1 fw-500 ellipsis ph-6">메뉴별 매출</div>
+              <button class="dp-if align-items-center ml-at">
+                <span class="fs-12">상세보기</span>
+                <i class="ic12_arrow_r ic_white flex-shrink-none"></i>
+              </button>
+            </div>
+
+            <div class="dp-f align-items-center container pa-12 bdr-8 min-width-0 fc-white mt-12 bg-medium-grey">
+              <i class="ic24_list2 ic_white flex-shrink-none"></i>
+              <div class="flex1 fw-500 ellipsis ph-6">주문채널별 매출</div>
+              <button class="dp-if align-items-center ml-at">
+                <span class="fs-12">상세보기</span>
+                <i class="ic12_arrow_r ic_white flex-shrink-none"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+        <!-- 총 매출 : 끝 -->
+
+
+
+
+      </div>
+    </div>
+    <!-- 컨텐츠 스크롤 영역 :  끝 -->
+
+    <!--- 툴팁 팝업 : 시작 // 컨텐츠 영역 밖에서 호출!!! 툴팁 버튼의  현재 위치 알아와서 해당 높이값 top 에 뿌려주세요!! -->
+    <div class="tooltip-layer" style="top:45px">
+      <button class="tooltip-close"><i class="ic24_close2 ic_white"></i></button>
+      <div class="dp-f align-items-start">
+        <div class="fs-18 lh-12">˙</div>
+        <div>일간>오늘 날짜의 데이터는 실시간으로 표시됩니다.</div>
+      </div>
+      <div class="dp-f align-items-start mt-6">
+        <div class="fs-18 lh-12">˙</div>
+        <div>이외 기간 선택 시 오늘 날짜는 제외되며 전날 마감까지의 데이터가 표시됩니다.</div>
+      </div>
+    </div>
+    <!--- 툴팁 팝업 : 끝 -->
+
+  </div>
+  <!-- 루트 엘리먼트 : 끝 -->
+
+
+
+
+
+</body>
+</html>

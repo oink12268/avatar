@@ -1,0 +1,204 @@
+// inputField type 1
+.input-field-con{
+  position:relative;
+  width:100%;
+  height:44px;
+  padding:7px 12px;
+  border-radius: 4px;
+  background-color: $color-white;
+
+  input, select, textarea{
+    width:100%; height:30px;
+    font-weight: 400;
+    color:$color-dark-grey;
+    transition: all 0.3s ease-in-out;
+    border:none;
+  }
+
+  &.date{
+    input[type="text"]{
+      padding-right : 25px;
+    }
+    .date-picker-bt{
+      position:absolute;
+      width:24px;
+      height:24px;
+      top:11px;
+      right:10px;
+      z-index: 1;
+      @include svg-color($ic24_calendar,$color-dark-grey);
+    }
+    &.disabled{
+      opacity: 0.4;
+      background-color: $color-light-grey;
+    }
+  }
+
+
+  // select{
+  //   padding:3px 40px 3px 12px;
+  //   background: url('../img/select_arrow.png') no-repeat;
+  //   background-size: 24px 24px;
+  //   background-position: 99% center;
+  //   &.small{
+  //     height:20px;
+  //     font-size:12px;
+  //     font-weight: 300;
+  //     padding:0 20px 0 10px;
+  //     background: url('../img/select_arrow.png') no-repeat;
+  //     background-size: 12px 12px;
+  //     background-position: 98% center;
+  //   }
+  // }
+}
+
+
+// select
+.select-box{
+  position:relative;
+  display: inline-flex;
+  align-items: center;
+  padding:0 6px;
+  height: 25px;
+  border-bottom:1px solid $color-grey2;
+  cursor: pointer;
+  span{
+    margin-right:6px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  i{flex-shrink: 0; margin-left:auto;}
+}
+
+
+// inputField type 2
+.input-field-line-con{
+  position:relative;
+  width:100%;
+  height:44px;
+  padding:7px 12px;
+  background-color: $color-white;
+  transition: all 0.3s ease-in-out;
+  border-bottom:1px solid $color-light-grey;
+  font-weight: 400;
+
+  // custom
+  &.small{
+    height:26px;
+    padding:0;
+    border-radius: 4px;
+    border-bottom: none;
+    background-color: #f2f2f2;
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"], input[type="time"], input[type="text"],input[type="datetime"]{
+      appearance: none !important;
+      padding:0 10px 0 30px;
+      height:26px;
+      font-size: 14px;
+    }
+    .input-bt-date{
+      position:absolute;
+      width:24px; height:24px;
+      top:2px; left:4px;
+      z-index: 2;
+      @include svg-color($ic24_calendar,$color-black);
+      filter: invert(56%) sepia(14%) saturate(12%) hue-rotate(359deg) brightness(91%) contrast(91%);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  input, select{
+    width:100%; height:30px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+    color:$color-dark-grey;
+    border:none;
+  }
+  input[type="text"], input[type="password"]{padding-right: 0;}
+
+  &.value-check{
+    input[type="text"], input[type="password"]{padding-right: 70px;}
+  }
+  &.select, &.icon{
+    cursor: pointer;
+    input[type="text"], input[type="password"]{padding-right: 40px; cursor: pointer;}
+  }
+  &.identification{
+    input[type="text"], input[type="password"]{padding-right: 100px;}
+  }
+
+  .input-select{
+    position:absolute;
+    width:24px; height:24px;
+    top:10px; right:8px;
+    z-index: 2;
+    @include svg-color($ic24_arrow_d_filled,$color-black);
+    transition: all 0.3s ease-in-out;
+  }
+  .input-icon{
+    position:absolute;
+    width:24px; height:24px;
+    top:10px; right:8px;
+    z-index: 2;
+  }
+
+  .input-value-check{
+    // display:none;
+    position:absolute;
+    padding:0 10px; height:22px; line-height: 22px;
+    top:10px; right:8px;
+    font-size: 12px;
+    border-radius: 11px;
+    color:$color-white;
+    background-color: $color-medium-grey;
+    z-index: 2;
+  }
+
+  .input-identification{
+    // display:none;
+    position:absolute;
+    padding:0 10px; height:22px; line-height: 22px;
+    top:10px; right:8px;
+    font-size: 14px;
+    color:$color-medium-grey;
+    z-index: 2;
+    opacity: 0.6;
+  }
+
+
+
+  .input-certify-time{
+    position:absolute;
+    padding:0 6px; height:22px; line-height: 22px;
+    top:10px; right:8px;
+    font-size: 12px;
+    color:$color-red;
+    z-index: 2;
+  }
+
+  &.active{
+    border-bottom:1px solid $color-medium-grey;
+    // box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.16);
+    // .input-bt-close, .input-bt-eye, .input-bt-certify{display: block;}
+    .input-identification{
+      opacity:1;
+    }
+
+  }
+
+  &.disabled{
+    opacity: 0.4;
+    background-color: $color-light-grey;
+  }
+}
+
+.input-error-msg{
+  position: relative;
+  width:100%;
+  padding: 12px;
+  font-size: 12px;
+  color:$color-red;
+}
+

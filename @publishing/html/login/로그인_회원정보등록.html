@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Comaptible" content="IE=edge, chrome=1">
+<title>공통!</title>
+<!-- SEO: 검색 엔진 최적화 설정 -->
+<meta name="description" content="푸드테크">
+<meta name="keywords" content="푸드테크, ...">
+<!-- 모바일 설정 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../scss/import.css">
+</head>
+<body>
+
+  <!-- 루트 엘리먼트 : 시작 -->
+  <div class="root-wrap">
+
+    <!-- 타이틀 바 : 시작 -->
+    <div class="title-bar">
+      <button class="button-history"><i class="ic24_arrow_l_bold ic_medium-grey"></i></button>
+      <h3>회원정보 등록</h3>
+    </div>
+    <!-- 타이틀 바 : 끝 -->
+
+    <!-- 컨텐츠 스크롤 영역 : 시작 -->
+    <div class="content-scroll scroll-54">
+      <div class="container ph-16">
+
+        <div class="container pt-36 pb-24 ta-c fs-16">
+          주문접수 앱 사용을 위한<br>
+          아이디/비밀번호 등록을 진행합니다.
+        </div>
+
+      <div class="container pv-12 fs-12 fw-500">아이디</div>
+
+      <!--입력필드 : 시작-->
+      <div class="container">
+        <!-- 인풋  : 시작 // 값이 있거나 포커스 상태일때에 active 클래스 추가! -->
+        <div class="input-field-line-con value-check active">
+          <input type="text" placeholder="아이디" value="">
+          <button class="input-value-check">중복확인</button>
+        </div>
+        <!-- 인풋  : 끝 -->
+      </div>
+      <!--입력필드 : 끝-->
+
+      <div class="input-error-msg">
+        *  올바른 형식으로 입력해 주세요.
+        <div class="fc-blue">* 사용가능한 ID입니다.</div>
+      </div>
+
+
+      <div class="container pv-12 fs-12 fw-500">비밀번호</div>
+
+      <!--입력필드 : 시작-->
+      <div class="container mb-12">
+        <!-- 인풋  : 시작 // 값이 있거나 포커스 상태일때에 active 클래스 추가! -->
+        <div class="input-field-line-con active">
+          <input type="password" class="" placeholder="비밀번호 입력" value="" >
+        </div>
+        <!-- 인풋  : 끝 -->
+      </div>
+      <!--입력필드 : 끝-->
+
+        <!--입력필드 : 시작-->
+      <div class="container">
+        <!-- 인풋  : 시작 // 값이 있거나 포커스 상태일때에 active 클래스 추가! -->
+        <div class="input-field-line-con active">
+          <input type="password" class="" placeholder="비밀번호 재입력" value="" >
+        </div>
+        <!-- 인풋  : 끝 -->
+      </div>
+      <!--입력필드 : 끝-->
+
+      <div class="container pa-12 fs-12 fc-grey">
+        영문/숫자/특수문자(!@#$%&*?) 중 2가지 이상 조합 10~20자
+      </div>
+
+      <div class="input-error-msg pt-0">
+        *비밀번호가 올바르지 않습니다.
+      </div>
+
+
+      <div class="container pv-12 fs-12 fw-500">이용약관 동의</div>
+      <div class="dp-f align-items-center">
+        <label class="button-input height-auto container ph-0 pv-12" for="a1">
+          <span class="text flex1 fs-14">전체 약관에 동의합니다.</span>
+          <div class="checkbox lage ml-at">
+            <input type="checkbox" id="a1"> <span class="check-icon"></span>
+          </div>
+        </label>
+      </div>
+      <div class="dp-f align-items-center">
+        <label class="button-input height-auto container ph-0 pv-12" for="a2">
+          <span class="text flex1 fs-14">서비스 이용 약관 동의 (필수)</span>
+          <div class="checkbox sub ml-at">
+            <input type="checkbox" id="a2"> <span class="check-icon"></span>
+          </div>
+        </label>
+      </div>
+      <div class="dp-f align-items-center">
+        <label class="button-input height-auto container ph-0 pv-12" for="a3">
+          <span class="text flex1 fs-14">개인정보 수집 동의 (필수)</span>
+          <div class="checkbox sub ml-at">
+            <input type="checkbox" id="a3"> <span class="check-icon"></span>
+          </div>
+        </label>
+      </div>
+      <div class="dp-f align-items-center">
+        <label class="button-input height-auto container ph-0 pv-12" for="a4">
+          <span class="text flex1 fs-14">만 14세 이상입니다. (필수)</span>
+          <div class="checkbox sub ml-at">
+            <input type="checkbox" id="a4"> <span class="check-icon"></span>
+          </div>
+        </label>
+      </div>
+      <div class="dp-f align-items-center">
+        <label class="button-input height-auto container ph-0 pv-12" for="a5">
+          <span class="text flex1 fs-14">광고성 정보 수신 동의 (선택)</span>
+          <div class="checkbox sub ml-at">
+            <input type="checkbox" id="a5"> <span class="check-icon"></span>
+          </div>
+        </label>
+      </div>
+
+      <div class="container pt-16 pb-24">
+        <button class="button-rectangle size-100 large bg-medium-grey">등록하기</button>
+      </div>
+
+      </div>
+    </div>
+    <!-- 컨텐츠 스크롤 영역 :  끝 -->
+
+   </div>
+  <!-- 루트 엘리먼트 : 끝 -->
+
+</body>
+</html>

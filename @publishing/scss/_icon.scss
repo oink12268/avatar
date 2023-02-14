@@ -1,0 +1,122 @@
+/********************************************************/
+/* icon */
+/********************************************************/
+
+[class*="ic12_"]{
+  display: inline-block;
+  width: 12px; height: 12px;
+  transition: all 0.5s ease-in-out;
+}
+[class*="ic24_"]{
+  display: inline-block;
+  width: 24px; height: 24px;
+  transition: all 0.5s ease-in-out;
+}
+[class*="ic32_"]{
+  display: inline-block;
+  width: 32px; height: 32px;
+  transition: all 0.5s ease-in-out;
+}
+
+// [class*="ic_"]{
+//   display: inline-block;
+//   width: 24px; height: 24px;
+//   transition: all 0.5s ease-in-out;
+// }
+
+// 아이콘 설정
+//// icon 1
+// @each $name, $glyph in $colors {
+//   .ic_list.#{$name}{
+//     @include svg-color($ic_list,$glyph);
+//   }
+// }
+
+
+.ic12_bar{@include svg-color($ic12_bar,$color-black);}
+.ic12_arrow_d{@include svg-color($ic12_arrow_d,$color-black);}
+.ic12_arrow_l{@include svg-color($ic12_arrow_l,$color-black);}
+.ic12_arrow_r{@include svg-color($ic12_arrow_r,$color-black);}
+.ic12_arrow_u{@include svg-color($ic12_arrow_u,$color-black);}
+
+.ic24_arrow_l{@include svg-color($ic24_arrow_l,$color-black);}
+.ic24_arrow_r{@include svg-color($ic24_arrow_r,$color-black);}
+.ic24_arrow_u{@include svg-color($ic24_arrow_u,$color-black);}
+.ic24_arrow_d{@include svg-color($ic24_arrow_d,$color-black);}
+.ic24_arrow_l_bold{@include svg-color($ic24_arrow_l_bold,$color-black);}
+.ic24_arrow_r_bold{@include svg-color($ic24_arrow_r_bold,$color-black);}
+.ic24_arrow_u_bold{@include svg-color($ic24_arrow_u_bold,$color-black);}
+.ic24_arrow_d_bold{@include svg-color($ic24_arrow_d_bold,$color-black);}
+.ic24_close_bold{@include svg-color($ic24_close_bold,$color-black);}
+.ic24_plus_bold{@include svg-color($ic24_plus_bold,$color-black);}
+.ic24_minus_bold{@include svg-color($ic24_minus_bold,$color-black);}
+.ic24_graph_filled{@include svg-color($ic24_graph_filled,$color-black);}
+.ic24_message_filled{@include svg-color($ic24_message_filled,$color-black);}
+.ic24_receipt_filled{@include svg-color($ic24_receipt_filled,$color-black);}
+.ic24_minus_circle_filled{@include svg-color($ic24_minus_circle_filled,$color-black);}
+.ic24_plus_circle_filled{@include svg-color($ic24_plus_circle_filled,$color-black);}
+.ic24_check_circle_filled{@include svg-color($ic24_check_circle_filled,$color-black);}
+.ic24_radio_select{@include svg-color($ic24_radio_select,$color-black);}
+.ic24_radio_unselect{@include svg-color($ic24_radio_unselect,$color-black);}
+.ic24_screen_full{@include svg-color($ic24_screen_full,$color-black);}
+.ic24_check_bold{@include svg-color($ic24_check_bold,$color-black);}
+.ic24_delivery2{@include svg-color($ic24_delivery2,$color-black);}
+.ic24_delivery{@include svg-color($ic24_delivery,$color-black);}
+.ic24_sandglass{@include svg-color($ic24_sandglass,$color-black);}
+.ic24_arrow_d_filled{@include svg-color($ic24_arrow_d_filled,$color-black);}
+.ic24_arrow_l_filled{@include svg-color($ic24_arrow_l_filled,$color-black);}
+.ic24_arrow_r_filled{@include svg-color($ic24_arrow_r_filled,$color-black);}
+.ic24_arrow_u_filled{@include svg-color($ic24_arrow_u_filled,$color-black);}
+.ic24_empty2{@include svg-color($ic24_empty2,$color-black);}
+.ic24_food{@include svg-color($ic24_food,$color-black);}
+.ic24_store{@include svg-color($ic24_store,$color-black);}
+.ic24_time{@include svg-color($ic24_time,$color-black);}
+.ic24_plus_square{@include svg-color($ic24_plus_square,$color-black);}
+.ic24_close2{@include svg-color($ic24_close2,$color-black);}
+.ic24_internet{@include svg-color($ic24_internet,$color-black);}
+.ic24_internet_disconnect{@include svg-color($ic24_internet_disconnect,$color-black);}
+.ic24_location_filled{@include svg-color($ic24_location_filled,$color-black);}
+.ic24_refresh{@include svg-color($ic24_refresh,$color-black);}
+.ic24_question{@include svg-color($ic24_question,$color-black);}
+.ic24_question_filled{@include svg-color($ic24_question_filled,$color-black);}
+.ic24_arrow_u_circle_filled{@include svg-color($ic24_arrow_u_circle_filled,$color-black);}
+.ic24_arrow_d_circle_filled{@include svg-color($ic24_arrow_d_circle_filled,$color-black);}
+.ic24_arrow_l_circle_filled{@include svg-color($ic24_arrow_l_circle_filled,$color-black);}
+.ic24_arrow_r_circle_filled{@include svg-color($ic24_arrow_r_circle_filled,$color-black);}
+.ic24_calendar{@include svg-color($ic24_calendar,$color-black);}
+.ic24_cup{@include svg-color($ic24_cup,$color-black);}
+.ic24_cup_filled{@include svg-color($ic24_cup_filled,$color-black);}
+.ic24_arrow2_bold_ru{@include svg-color($ic24_arrow2_bold_ru,$color-black);}
+.ic24_arrow2_bold_rd{@include svg-color($ic24_arrow2_bold_rd,$color-black);}
+.ic24_arrow2_bold_lu{@include svg-color($ic24_arrow2_bold_lu,$color-black);}
+.ic24_arrow2_bold_ld{@include svg-color($ic24_arrow2_bold_ld,$color-black);}
+.ic24_arrow_bold_ru{@include svg-color($ic24_arrow_bold_ru,$color-black);}
+.ic24_arrow_bold_rd{@include svg-color($ic24_arrow_bold_rd,$color-black);}
+.ic24_arrow_bold_lu{@include svg-color($ic24_arrow_bold_lu,$color-black);}
+.ic24_arrow_bold_ld{@include svg-color($ic24_arrow_bold_ld,$color-black);}
+.ic24_devide_filled{@include svg-color($ic24_devide_filled,$color-black);}
+.ic24_chicken{@include svg-color($ic24_chicken,$color-black);}
+.ic24_graph6{@include svg-color($ic24_graph6,$color-black);}
+.ic24_grid{@include svg-color($ic24_grid,$color-black);}
+.ic24_list{@include svg-color($ic24_list,$color-black);}
+.ic24_list2{@include svg-color($ic24_list2,$color-black);}
+.ic24_map{@include svg-color($ic24_map,$color-black);}
+.ic24_close_circle_filled{@include svg-color($ic24_close_circle_filled,$color-black);}
+.ic24_check{@include svg-color($ic24_check,$color-black);}
+.ic24_cs{@include svg-color($ic24_cs,$color-black);}
+.ic24_notice{@include svg-color($ic24_notice,$color-black);}
+.ic24_store_filled{@include svg-color($ic24_store_filled,$color-black);}
+.ic24_out{@include svg-color($ic24_out,$color-black);}
+.ic24_check2_circle_filled{@include svg-color($ic24_check2_circle_filled,$color-black);}
+.ic24_info_circle_filled{@include svg-color($ic24_info_circle_filled,$color-black);}
+
+.ic32_bell2{@include svg-color($ic32_bell2,$color-black);}
+.ic32_hamberger{@include svg-color($ic32_hamberger,$color-black);}
+.ic32_chart{@include svg-color($ic32_chart,$color-black);}
+.ic32_store2{@include svg-color($ic32_store2,$color-black);}
+.ic32_chart{@include svg-color($ic32_chart,$color-black);}
+
+.ic32_logo{@include svg-color($ic32_logo,$color-black);}
+.ic32_logo_bk{@include svg-color($ic32_logo_bk,$color-black);}
+.ic32_logo_grey{@include svg-color($ic32_logo_grey,$color-black);}
+.ic32_search{@include svg-color($ic32_search,$color-black);}

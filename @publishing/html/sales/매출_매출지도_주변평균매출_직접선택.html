@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Comaptible" content="IE=edge, chrome=1">
+<title>공통!</title>
+<!-- SEO: 검색 엔진 최적화 설정 -->
+<meta name="description" content="푸드테크">
+<meta name="keywords" content="푸드테크, ...">
+<!-- 모바일 설정 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../scss/import.css">
+</head>
+<body>
+
+  <!-- 루트 엘리먼트 : 시작 -->
+  <div class="root-wrap">
+
+    <!-- 타이틀 바 : 시작 -->
+    <div class="title-bar">
+      <button class="button-history"><i class="ic24_arrow_l_bold ic_medium-grey"></i></button>
+      <h3>매출 지도</h3>
+      <!-- 툴팁 호출 버튼 클릭시 아이콘 토글시켜주세요! -->
+      <button class="tooltip">
+        <i class="ic24_question ic_grey"></i>
+        <!-- <i class="ic24_question_filled ic_dark-grey"></i> -->
+      </button>
+    </div>
+    <!-- 타이틀 바 : 끝 -->
+
+    <!-- 컨텐츠 스크롤 영역 : 시작 -->
+    <div class="content-scroll scroll-54">
+      <div class="container ph-16">
+
+        <div class="tab-list-con after-none mt-16">
+          <ul class="tab-type-b">
+            <li class="">일간</li>
+            <li class="">주간</li>
+            <li class="">월간</li>
+            <li class="active">직접선택</li>
+          </ul>
+        </div>
+
+        <div class="dp-f align-items-center container bd-grey2-b01 pv-2 mt-12">
+          <div class="flex1">
+            <!-- 인풋  : 시작 -->
+            <div class="input-field-con date">
+              <input type="text" class="active" value="2022-04-06" readonly>
+              <button class="date-picker-bt"></button>
+            </div>
+            <!-- 인풋  : 끝 -->
+          </div>
+          <div class="flex-shrink-none">~</div>
+          <div class="flex1">
+            <!-- 인풋  : 시작 -->
+            <div class="input-field-con date">
+              <input type="text" class="active" value="2022-04-06" readonly>
+              <button class="date-picker-bt"></button>
+            </div>
+            <!-- 인풋  : 끝 -->
+          </div>
+          <div class="wd-40 flex-shrink-none ta-c fw-500">검색</div>
+        </div>
+
+      </div>
+
+      <!-- 지도 영역 : 시작 -->
+      <div class="container overflow-h" style="height:calc(100% - 109px); background-image: url('https://map0.daumcdn.net/map_2d_hd/2205pfk/L6/251/112.png');">
+        <!-- 마커 : 시작 -->
+        <div class="map-sales-marker" style="top:30px; left:50px;">
+          <div>역삼1동</div>
+          <div class="fs-14 fw-500">289.1만</div>
+          <div>938건</div>
+        </div>
+        <!-- 마커 : 끝 -->
+
+        <!-- 마커 : 시작 -->
+        <div class="map-sales-marker" style="bottom:40px; right:90px;">
+          <div>역삼1동</div>
+          <div class="fs-14 fw-500">289.1만</div>
+          <div>938건</div>
+        </div>
+        <!-- 마커 : 끝 -->
+
+        <!-- 마커 : 시작 -->
+        <div class="map-sales-marker" style="top:40px; left:90px;">
+          <div>역삼1동</div>
+          <div class="fs-14 fw-500">289.1만</div>
+          <div>938건</div>
+        </div>
+        <!-- 마커 : 끝 -->
+
+      </div>
+      <!-- 지도 영역 : 끝 -->
+
+    </div>
+    <!-- 컨텐츠 스크롤 영역 :  끝 -->
+
+    <!-- 푸터 버튼 영역 : 시작 -->
+    <div class="ps-a container bottom-24 left-0 ph-16 zx-10">
+      <div class="map-footer-bar">
+        <button class="wd-60 ta-c fs-12 fw-500 fc-blue flex-shrink-none">상세보기</button>
+        <div class="dp-f flex1">
+          <div class="toggle-item-box item-length2">
+            <button class="button-toggle fs-12 mb-0 ellipsis active">우리 매장 배달매출</button>
+            <button class="button-toggle fs-12 mb-0 ellipsis">주변 평균 매출(내 업종)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 푸터 버튼 영역 : 끝 -->
+
+
+    <!--- 툴팁 팝업 : 시작 // 컨텐츠 영역 밖에서 호출!!! 툴팁 버튼의  현재 위치 알아와서 해당 높이값 top 에 뿌려주세요!! -->
+    <div class="tooltip-layer" style="top:45px">
+      <button class="tooltip-close"><i class="ic24_close2 ic_white"></i></button>
+      <div class="dp-f align-items-start">
+        <div class="fs-18 lh-12">˙</div>
+        <div>배달 매출에 대한 각 동별 매출 및 주문 건수 현황입니다.<div>
+      </div>
+    </div>
+    <!--- 툴팁 팝업 : 끝 -->
+
+  </div>
+  <!-- 루트 엘리먼트 : 끝 -->
+
+
+
+
+
+</body>
+</html>

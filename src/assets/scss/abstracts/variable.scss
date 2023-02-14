@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+// important
+$imt : unquote('!important');
+
+// item length
+$itemLength : 800;
+
+// Basic
+$color-primary: #3e50d9 !default;
+$color-secondary: #fff !default;
+
+$color-green:#9CD631 !default;
+//$color-mint:#30D1CD !default;
+$color-mint:#00D5EB !default; // zeplin => cyan
+$color-sky:#f5faff !default;
+$color-blue:#146EE6 !default;
+$color-blue2:#477fe9 !default;
+$color-yellow:#FCBF45 !default;
+$color-red:#F85442 !default;
+$color-dark-grey:#232836 !default;
+$color-medium-grey: #42495F !default;
+$color-grey: #7D88A5 !default;
+$color-grey2: #C9D0DE !default;
+$color-grey3: #7f7f7f !default;
+$color-light-grey: #E8E8E8 !default;
+$color-light-grey2: #F8F8F8 !default;
+$color-light-grey3: #aaaaaa !default;
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+
+$colors: () !default;
+$colors: map-merge(
+    (
+      "primary" :       $color-primary,
+      "secondary" :     $color-secondary,
+      "green" :         $color-green,
+      "mint" :          $color-mint,
+      "sky" :          $color-sky,
+      "blue" :          $color-blue,
+      "blue2" :         $color-blue2,
+      "yellow" :        $color-yellow,
+      "red" :           $color-red,
+      "dark-grey" :     $color-dark-grey,
+      "medium-grey" :   $color-medium-grey,
+      "grey":           $color-grey,
+      "grey2":          $color-grey2,
+      "grey3":          $color-grey3,
+      "light-grey":     $color-light-grey,
+      "light-grey2":    $color-light-grey2,
+      "light-grey3":    $color-light-grey3,
+      "white":          $color-white,
+      "black":          $color-black,
+    ),
+    $colors
+);
+
+// animation
+$timer: (0.3s, 0.4s);
+$layer-bg-rgba: 0.4 !default;
+$cubic-bezier-in: cubic-bezier(0.165, 0.84, 0.44, 1);
+$cubic-bezier-out: cubic-bezier(1, 0.44, 0.44, 1);

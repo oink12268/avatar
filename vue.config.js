@@ -1,4 +1,6 @@
+const path = require('path')
 const { defineConfig } = require('@vue/cli-service')
+
 module.exports = defineConfig({
   devServer: {
     historyApiFallback: true,
@@ -13,6 +15,16 @@ module.exports = defineConfig({
   },
 
   transpileDependencies: true,
+
+  configureWebpack: {
+    devtool: 'source-map',
+    resolve: {
+      alias: {
+        '@': path.join(__dirname, 'src/'),
+      },
+      extensions: ['.vue', '.js'],
+    },
+  },
 
   css: {
     loaderOptions: {

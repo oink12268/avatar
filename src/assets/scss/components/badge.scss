@@ -1,0 +1,57 @@
+// button
+.badge{
+  position:relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  height: 22px;
+  padding:0 6px;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  align-items: center;
+  //justify-content: center;
+  white-space: nowrap;
+  color:$color-white;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  ~ .badge {margin-left: 6px;}
+  @each $color, $value in $colors {
+    &.bg-#{$color}{
+      //color: #{$value};
+      background-color:#{$value};
+    }
+  }
+  &.bg-light-grey, &.bg-light-grey2, &.bg-white, &.bg-secondary{
+    color:$color-medium-grey;
+  }
+}
+
+.badge-outline{
+  position:relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  height: 22px;
+  padding:0 6px;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  align-items: center;
+  //justify-content: center;
+  white-space: nowrap;
+  color:$color-medium-grey;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  ~ .badge-outline{margin-left: 6px;}
+  @each $color, $value in $colors {
+    &.bd-#{$color}{
+      color: #{$value};
+      border:1px solid #{$value};
+    }
+  }
+  &.bd-light-grey, &.bd-light-grey2, &.bd-white{
+    color:$color-medium-grey;
+  }
+}
+
+
+
