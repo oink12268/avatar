@@ -5,11 +5,11 @@
 			<div class="calendar-controller">
 				<button
 					class="calendar-today ps-a left-50 button-outline small bd-light-grey fc-dark-grey ta-c hp-23"
-					@click="event.focusToday"
+					@click="focusToday"
 				>
 					오늘
 				</button>
-				<date-range :mode="dateType.MONTH" :to-date="today" />
+				<date-range :mode="dateType.MONTH" :to-date="today" @selectedDate="getCalendarData" />
 			</div>
 
 			<div class="calendar-box">
@@ -43,12 +43,15 @@
 								{{ day.day }}
 							</div>
 							<div class="container ta-c wh-20 mh-at">
-								<span class="circle circle-size-6" />
+								<span class="circle circle-size-2" />
 							</div>
-							<div class="calendar-price">test</div>
+							<div class="calendar-price"></div>
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="ta-r">
+				<img class="wh-50" src="../assets/plus_big.png" />
 			</div>
 		</div>
 	</div>
@@ -71,11 +74,13 @@ export default {
 		const prevDay = ref(0)
 		const firstDayOfTheLastWeek = ref(0)
 
-		const event = {
-			focusToday: () => {
-				selectedDate.value = dayjs()
-				today.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
-			},
+		const focusToday = () => {
+			selectedDate.value = dayjs()
+			today.value = dayjs().format('YYYY-MM-DD HH:mm:ss')
+		}
+
+		const getCalendarData = (refresh = false, toDate) => {
+			changeMonth(toDate)
 		}
 
 		const selectDate = (idx, day) => {
@@ -128,10 +133,8 @@ export default {
 				}
 			}
 		}
-		changeMonth()
 
 		return {
-			event,
 			dateType,
 			today,
 			selectedDate,
@@ -141,10 +144,21 @@ export default {
 			lastMonthStart,
 			firstDayOfTheLastWeek,
 			prevDay,
+			getCalendarData,
 			selectDate,
+			focusToday,
 		}
 	},
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.calendar-cell.active > div {
+	background-color: #c9d0de;
+	color: #fff;
+}
+.calendar-today {
+	z-index: 2;
+	font-size: 14px;
+}
+</style>

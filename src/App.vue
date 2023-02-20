@@ -1,5 +1,5 @@
 <template>
-	<!--    <img alt="Vue logo" src="./assets/logo.png" @click="event.click">-->
+	<!--	<img alt="Vue logo" src="./assets/logo.png" @click="event.click" />-->
 	<router-view></router-view>
 </template>
 
@@ -20,8 +20,8 @@ export default {
 				axios.post('/api/admin/payment', param).then(res => {
 					console.log('KSH::Court', res.data)
 				})
-				// axios.get('/api/my-rythm').then((res) => {
-				//   console.log('KSH::Court', res.data)
+				// axios.get('/api/my-rythm').then(res => {
+				// 	console.log('KSH::Court', res.data)
 				// })
 			},
 		}

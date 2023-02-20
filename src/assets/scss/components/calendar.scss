@@ -1,5 +1,5 @@
 /*
-* calendar 
+* calendar
 ********************************************************************/
 
 .calendar-wrap{
@@ -22,7 +22,7 @@
   }
   .calendar-box{
     position: relative;
-    width: 100%; 
+    width: 100%;
     padding: 12px 0;
   }
   .calendar-week-title{
@@ -75,7 +75,7 @@
       }
       .calendar-price{
         text-align: center;
-        letter-spacing: -1px; 
+        letter-spacing: -1px;
         font-size: 7px;
         color: $color-grey;
       }
