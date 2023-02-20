@@ -8,13 +8,35 @@
 			<img class="wd-150 hp-40" src="../assets/naver_login.png" @click="event.click4" />
 		</div>
 	</div>
+
+	<button class="button-rectangle size-100 bg-primary hp-54" @click="event.click5">modal test</button>
+
+	<bottom-modal :is-open="toggle" @close="toggle = !toggle">
+		<div class="fs-16 ta-c fw-900 pb-16">배달요청</div>
+		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">금액</div>
+		<div class="input-field-line-con value-check active">
+			<input type="number" placeholder="10,000" value="" />
+		</div>
+
+		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">메모</div>
+		<div class="input-field-line-con value-check active">
+			<input type="text" value="" />
+		</div>
+	</bottom-modal>
 </template>
 
 <script>
+import BottomModal from '@/components/popup/BottomModal'
+import { ref } from 'vue'
 export default {
 	name: 'LoginView',
-	components: {},
+	components: { BottomModal },
 	setup() {
+		const transaction = ref({
+			amount: 0,
+			memo: '',
+		})
+		const toggle = ref(false)
 		const event = {
 			click: () => {
 				console.log('click')
@@ -32,10 +54,15 @@ export default {
 				console.log('click')
 				location.href = 'http://localhost:8080/oauth2/authorization/facebook'
 			},
+			click5: () => {
+				console.log('click')
+				toggle.value = !toggle.value
+			},
 		}
 
 		return {
 			event,
+			toggle,
 		}
 	},
 }
