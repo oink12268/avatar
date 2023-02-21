@@ -50,10 +50,26 @@
 					</div>
 				</div>
 			</div>
-			<div class="ta-r">
-				<img class="wh-50" src="../assets/plus_big.png" />
-			</div>
 		</div>
+		<div class="ta-r">
+			<img class="wh-50" src="../assets/plus_big.png" @click="isTransactionModal = true" />
+		</div>
+
+		<bottom-modal :is-open="isTransactionModal" @close="isTransactionModal = false">
+			<div class="container pv-12 fs-12 fw-500 fc-medium-grey">금액</div>
+			<div class="input-field-line-con value-check active">
+				<input type="number" placeholder="10,000" value="" />
+			</div>
+
+			<div class="container pv-12 fs-12 fw-500 fc-medium-grey">메모</div>
+			<div class="input-field-line-con value-check active">
+				<input type="text" value="" />
+			</div>
+			<div class="container dp-f align-items-center mt-10">
+				<button class="button-rectangle size-50 large hp-54">수입</button>
+				<button class="button-rectangle size-50 large hp-54">지출</button>
+			</div>
+		</bottom-modal>
 	</div>
 </template>
 
@@ -62,9 +78,11 @@ import DateRange from '@/views/components/DateRange'
 import { dayOfWeek, dateType } from '@/global/constants/constants'
 import { ref } from 'vue'
 import dayjs from 'dayjs'
+import BottomModal from '@/components/popup/BottomModal'
+
 export default {
 	name: 'DashboardView',
-	components: { DateRange },
+	components: { DateRange, BottomModal },
 	setup() {
 		const selectedDate = ref(dayjs())
 		const today = ref(dayjs().format('YYYY-MM-DD'))
@@ -73,6 +91,7 @@ export default {
 		const lastMonthStart = ref(0)
 		const prevDay = ref(0)
 		const firstDayOfTheLastWeek = ref(0)
+		const isTransactionModal = ref(false)
 
 		const focusToday = () => {
 			selectedDate.value = dayjs()
@@ -134,6 +153,8 @@ export default {
 			}
 		}
 
+		const event = {}
+
 		return {
 			dateType,
 			today,
@@ -147,6 +168,7 @@ export default {
 			getCalendarData,
 			selectDate,
 			focusToday,
+			isTransactionModal,
 		}
 	},
 }

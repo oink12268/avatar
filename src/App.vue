@@ -1,5 +1,5 @@
 <template>
-	<img alt="Vue logo" src="./assets/logo.png" @click="event.click" />
+	<!--	<img alt="Vue logo" src="./assets/logo.png" @click="event.click" />-->
 	<router-view></router-view>
 </template>
 
