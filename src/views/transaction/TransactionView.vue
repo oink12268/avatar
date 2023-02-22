@@ -7,11 +7,11 @@
 
 <script>
 import { ref } from 'vue'
-import Calendar from '@/views/components/Calendar'
-import TransactionModal from '@/views/components/TransactionModal'
+import Calendar from '@/views/transaction/Calendar'
+import TransactionModal from '@/views/transaction/TransactionModal'
 
 export default {
-	name: 'DashboardView',
+	name: 'TransactionView',
 	components: { TransactionModal, Calendar },
 	setup() {
 		const event = {

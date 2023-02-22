@@ -1,3 +1,6 @@
+const provider = Object.freeze({
+	FILTERS: 'filters',
+})
 const sns = Object.freeze({
 	GOOGLE: 'google',
 	NAVER: 'naver',
@@ -18,4 +21,4 @@ const displayText = Object.freeze({
 
 const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토']
 
-export { sns, dateType, displayText, dayOfWeek }
+export { provider, sns, dateType, displayText, dayOfWeek }

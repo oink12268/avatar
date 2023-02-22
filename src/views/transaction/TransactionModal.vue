@@ -1,7 +1,5 @@
 <template>
-	<div class="ta-r">
-		<img class="wh-50" src="../../assets/plus_big.png" @click="isOpen = true" />
-	</div>
+	<div class="ta-r"><img class="wh-50" :src="$filters.getImagePath('plus_big.png')" @click="isOpen = true" /></div>
 
 	<bottom-modal :is-open="isOpen" @close="isOpen = false">
 		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">금액</div>

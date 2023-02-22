@@ -20,4 +20,8 @@ const dateCompare = (date1, date2) => {
 	return dayjs(dt1).isBefore(dayjs(dt2)) // now().isBefore('2022-06-21')
 }
 
-export { dateFormat, dateNowToString, dateCompare }
+const getImagePath = imageName => {
+	return require(`@/assets/images/${imageName}`)
+}
+
+export { dateFormat, dateNowToString, dateCompare, getImagePath }

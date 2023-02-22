@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import DateRange from '@/views/components/DateRange'
+import DateRange from '@/views/transaction/DateRange'
 import { dayOfWeek, dateType } from '@/global/constants/constants'
 import { ref, watch } from 'vue'
 import dayjs from 'dayjs'
