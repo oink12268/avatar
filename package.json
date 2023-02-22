@@ -63,7 +63,8 @@
         "error",
         {
           "ignores": [
-            "Calendar"
+            "Calendar",
+            "Footer"
           ]
         }
       ],
