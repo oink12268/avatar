@@ -1,6 +1,9 @@
 <template>
 	<div class="footer-bar">
 		<button :class="{ active: selectedService === 'transaction' }" @click="event.go('transaction')">
+			<i class="ic24_calendar" />
+		</button>
+		<button :class="{ active: selectedService === 'budget' }" @click="event.go('budget')">
 			<i class="ic24_receipt_filled" />
 		</button>
 		<button :class="{ active: selectedService === 'statistics' }" @click="event.go('statistics')">

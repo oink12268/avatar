@@ -7,6 +7,12 @@ const menu = Object.freeze({
 			tabs: [{ code: 'CALENDAR', title: '달력', path: 'calendar' }],
 		},
 		{
+			componentName: 'BudgetView',
+			title: '자산관리',
+			service: 'budget',
+			tabs: [{ code: 'budget', title: '자산', path: 'budget' }],
+		},
+		{
 			componentName: 'StatisticsView',
 			title: '통계관리',
 			service: 'statistics',

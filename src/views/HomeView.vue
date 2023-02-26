@@ -11,6 +11,9 @@ const { menus, allMenuTabsList } = menuComposable()
 const TransactionView = defineAsyncComponent(() =>
 	import(/* webpackChunkName: "chunk-transaction" */ '@/views/transaction/TransactionView.vue'),
 )
+const BudgetView = defineAsyncComponent(() =>
+	import(/* webpackChunkName: "chunk-statistics" */ '@/views/budget/BudgetView.vue'),
+)
 const StatisticsView = defineAsyncComponent(() =>
 	import(/* webpackChunkName: "chunk-statistics" */ '@/views/statistics/StatisticsView.vue'),
 )
@@ -20,6 +23,7 @@ export default {
 	components: {
 		Footer,
 		TransactionView,
+		BudgetView,
 		StatisticsView,
 	},
 	props: {

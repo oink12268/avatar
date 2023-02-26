@@ -1,7 +1,7 @@
 <template>
 	<div class="container ph-16">
 		<calendar @selectedDate="event.change" />
-		<transaction-modal />
+		<transaction-modal :selected-date="selectedDate" />
 	</div>
 </template>
 
@@ -14,12 +14,12 @@ export default {
 	name: 'TransactionView',
 	components: { TransactionModal, Calendar },
 	setup() {
+		const selectedDate = ref('')
 		const event = {
 			change: date => {
-				console.log('date', date)
+				selectedDate.value = date.format('YYYY-MM-DD')
 			},
 		}
-		const selectedDate = ref('')
 		return {
 			selectedDate,
 			event,
