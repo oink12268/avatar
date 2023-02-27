@@ -24,4 +24,10 @@ const getImagePath = imageName => {
 	return require(`@/assets/images/${imageName}`)
 }
 
-export { dateFormat, dateNowToString, dateCompare, getImagePath }
+const currency = value => {
+	if (!value && value !== 0) return displayText.DASH
+	const parts = value.toString().split('.')
+	return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (parts[1] ? '.' + parts[1] : '')
+}
+
+export { dateFormat, dateNowToString, dateCompare, getImagePath, currency }
