@@ -30,4 +30,11 @@ const currency = value => {
 	return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (parts[1] ? '.' + parts[1] : '')
 }
 
-export { dateFormat, dateNowToString, dateCompare, getImagePath, currency }
+const toQueryString = payload => {
+	return Object.entries(payload)
+		.filter(([, value]) => !(value === undefined || (typeof value !== 'boolean' && !value) || value.length === 0))
+		.map(obj => obj.join('='))
+		.join('&')
+}
+
+export { dateFormat, dateNowToString, dateCompare, getImagePath, currency, toQueryString }

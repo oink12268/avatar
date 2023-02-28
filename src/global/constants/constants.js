@@ -1,4 +1,7 @@
 const provider = Object.freeze({
+	HTTP: {
+		VASELINE: 'vaselineApi',
+	},
 	FILTERS: 'filters',
 })
 const sns = Object.freeze({

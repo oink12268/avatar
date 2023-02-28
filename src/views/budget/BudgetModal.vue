@@ -43,12 +43,6 @@ export default {
 		},
 	},
 	setup(props) {
-		// const isOpen = ref(false)
-		// const budget = ref({
-		// 	budgetName: '',
-		// 	balance: 0,
-		// })
-
 		const event = {
 			save: () => {
 				axios.post('/api/app/budget', props.budget).then(res => {
@@ -62,8 +56,6 @@ export default {
 		}
 
 		return {
-			// isOpen,
-			// budget,
 			event,
 		}
 	},

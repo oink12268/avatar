@@ -15,15 +15,19 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 import Calendar from '@/views/transaction/Calendar'
 import TransactionModal from '@/views/transaction/TransactionModal'
+import dayjs from 'dayjs'
+import axios from 'axios'
+import { provider } from '@/global/constants/constants'
 
 export default {
 	name: 'TransactionView',
 	components: { TransactionModal, Calendar },
 	setup() {
-		const selectedDate = ref('')
+		const http = inject(provider.HTTP.VASELINE)
+		const selectedDate = ref(dayjs().format('YYYY-MM-DD'))
 		const isPayment = ref(false)
 		const isOpen = ref(false)
 		const event = {
@@ -35,6 +39,17 @@ export default {
 				isOpen.value = true
 			},
 		}
+
+		const param = {
+			date: selectedDate.value,
+		}
+
+		const getTransaction = () => {
+			http.get('/api/app/transaction', param).then(res => {
+				console.log('res', res)
+			})
+		}
+		getTransaction()
 		return {
 			selectedDate,
 			isPayment,
