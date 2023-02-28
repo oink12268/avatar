@@ -37,4 +37,27 @@ const toQueryString = payload => {
 		.join('&')
 }
 
-export { dateFormat, dateNowToString, dateCompare, getImagePath, currency, toQueryString }
+const throttle = (callback, limit = 300) => {
+	let waiting = false
+	return function () {
+		if (!waiting) {
+			callback.apply(this, arguments)
+			waiting = true
+			setTimeout(() => {
+				waiting = false
+			}, limit)
+		}
+	}
+}
+
+const debounce = (callback, limit = 300) => {
+	let timeout
+	return function (...args) {
+		clearTimeout(timeout)
+		timeout = setTimeout(() => {
+			callback.apply(this, args)
+		}, limit)
+	}
+}
+
+export { dateFormat, dateNowToString, dateCompare, getImagePath, currency, toQueryString, throttle, debounce }

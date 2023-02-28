@@ -41,7 +41,6 @@ export default class Http {
 		return this.#send(this.service.post(url, param))
 	}
 	get(url, param = null) {
-		console.log('param', param)
 		if (url.indexOf('?') === -1 && param && Object.keys(param).length !== 0) url += '?'
 
 		// url = this.baseUrl + url

@@ -1,12 +1,19 @@
 <template>
-	<div class="home"><component :is="menuInfo.componentName" info="menuCurTab" /></div>
-	<Footer :service="service" />
+	<page>
+		<div class="home">
+			<Header></Header>
+			<component :is="menuInfo.componentName" info="menuCurTab" />
+		</div>
+		<Footer :service="service" />
+	</page>
 </template>
 
 <script>
 import menuComposable from '@/composables/menuComposable'
 import { defineAsyncComponent, computed } from 'vue'
 import Footer from '@/components/layouts/Footer'
+import Header from '@/components/layouts/Header'
+import Page from '@/components/layouts/Page'
 const { menus, allMenuTabsList } = menuComposable()
 const TransactionView = defineAsyncComponent(() =>
 	import(/* webpackChunkName: "chunk-transaction" */ '@/views/transaction/TransactionView.vue'),
@@ -21,7 +28,9 @@ const StatisticsView = defineAsyncComponent(() =>
 export default {
 	name: 'HomeView',
 	components: {
+		Page,
 		Footer,
+		Header,
 		TransactionView,
 		BudgetView,
 		StatisticsView,
@@ -56,4 +65,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.content-height {
+	height: calc(100% - 56px);
+}
+</style>
