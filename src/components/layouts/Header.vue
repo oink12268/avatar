@@ -1,7 +1,7 @@
 <template>
 	<!-- 헤더 : 시작-->
 	<div class="header-bar bg-white">
-		<button class="button-list">
+		<button class="button-list" @click="event.openSideMenu">
 			<i class="ic32_hamberger" />
 		</button>
 	</div>
@@ -11,6 +11,15 @@
 <script>
 export default {
 	name: 'Header',
+	setup() {
+		const event = {
+			openSideMenu: () => {},
+		}
+
+		return {
+			event,
+		}
+	},
 }
 </script>
 
