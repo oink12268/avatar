@@ -13,7 +13,7 @@ const responseError = e => {
 }
 
 function vaseline() {
-	return new Http(process.env.VUE_APP_ORDER_API_URL, responseSuccess, responseError)
+	return new Http(process.env.VUE_APP_VASELINE_API_URL, responseSuccess, responseError)
 }
 
 export { vaseline as vaselineHttpClient }

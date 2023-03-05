@@ -34659,7 +34659,7 @@ select[disabled='disabled'], select:disabled {
 }
 
 .calendar-wrap .calendar-week .calendar-cell .calendar-price {
-  text-align: center;
+  text-align: right;
   letter-spacing: -1px;
   font-size: 7px;
   color: #7D88A5;

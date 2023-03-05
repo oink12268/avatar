@@ -39,10 +39,9 @@
 						<div class="fs-10 ta-l">
 							{{ day.day }}
 						</div>
-						<div class="container ta-c wh-20 mh-at">
-							<span class="circle circle-size-2" />
-						</div>
-						<div class="calendar-price"></div>
+
+						<div class="calendar-price">{{ day.thisMonth === true ? $filters.currency(day.incomeAmount) : ' ' }}</div>
+						<div class="calendar-price">{{ day.thisMonth === true ? $filters.currency(day.paymentAmount) : ' ' }}</div>
 					</div>
 				</div>
 			</div>
@@ -52,8 +51,8 @@
 
 <script>
 import DateRange from '@/views/transaction/DateRange'
-import { dayOfWeek, dateType } from '@/global/constants/constants'
-import { ref, watch } from 'vue'
+import { dayOfWeek, dateType, provider } from '@/global/constants/constants'
+import { inject, ref, watch, nextTick } from 'vue'
 import dayjs from 'dayjs'
 
 export default {
@@ -61,10 +60,12 @@ export default {
 	components: { DateRange },
 	emits: ['selected-date'],
 	setup(_, { emit }) {
+		const http = inject(provider.HTTP.VASELINE)
 		const selectedDate = ref(dayjs())
 		const today = ref(dayjs().format('YYYY-MM-DD'))
 		const weekDays = ref(dayOfWeek)
 		const dates = ref([])
+		const datas = ref([])
 		const lastMonthStart = ref(0)
 		const prevDay = ref(0)
 		const firstDayOfTheLastWeek = ref(0)
@@ -75,7 +76,13 @@ export default {
 		}
 
 		const getCalendarData = (refresh = false, toDate) => {
-			changeMonth(toDate)
+			selectedDate.value = selectedDate.value.set('M', dayjs(toDate).get('M'))
+			http.get(`/api/app/transaction/total/${selectedDate.value.format('YYYY-MM')}`).then(res => {
+				datas.value = res
+				nextTick(_ => {
+					changeMonth(toDate)
+				})
+			})
 		}
 
 		const selectDate = (idx, day) => {
@@ -106,6 +113,8 @@ export default {
 				}
 				weekOfDays.push({
 					day: day,
+					incomeAmount: datas.value.length >= day ? datas.value[day - 1].incomeAmount : 0,
+					paymentAmount: datas.value.length >= day ? datas.value[day - 1].paymentAmount : 0,
 					thisMonth: true,
 				})
 
@@ -142,6 +151,7 @@ export default {
 			selectedDate,
 			weekDays,
 			dates,
+			datas,
 			changeMonth,
 			lastMonthStart,
 			firstDayOfTheLastWeek,

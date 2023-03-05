@@ -1,8 +1,12 @@
 <template>
-	<scroll-sticky-content class="scroll-127 bd-light-grey-t01">
+	<scroll-sticky-content class="scroll-104 bd-light-grey-t01">
 		<template #content>
 			<div class="container ph-16">
 				<calendar @selectedDate="event.change" />
+				<div class="container dp-f align-items-center mb-20">
+					<button class="button-rectangle size-50 large hp-54" @click="event.open(false)">수입</button>
+					<button class="button-rectangle size-50 large hp-54" @click="event.open(true)">지출</button>
+				</div>
 				<div
 					v-for="(income, no) in datas.incomes"
 					:key="no"
@@ -23,11 +27,6 @@
 					<button class="ml-at dp-if align-items-center flex-shrink-none">
 						<span class="fs-12 fc-red">{{ $filters.currency(payment.amount) }}</span>
 					</button>
-				</div>
-
-				<div class="container dp-f align-items-center mt-20">
-					<button class="button-rectangle size-50 large hp-54" @click="event.open(false)">수입</button>
-					<button class="button-rectangle size-50 large hp-54" @click="event.open(true)">지출</button>
 				</div>
 
 				<transaction-modal

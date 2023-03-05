@@ -1,23 +1,32 @@
 import axios from 'axios'
 import { toQueryString } from '@/global/utils'
 
+const onRequestFulfilled = config => {
+	config.headers['Cookie'] = document.cookie
+	return config
+}
+
 export default class Http {
 	constructor(baseUrl, successCallback, errorCallback) {
 		this.baseUrl = baseUrl
-		const baseHeader = {
-			'Content-Type': 'application/json;charset=UTF-8',
-			Accept: 'application/json',
-			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Headers': '*',
-			'Access-Control-Allow-Credentials': 'true',
-		}
+		// const baseHeader = {
+		// 	'Content-Type': 'application/json;charset=UTF-8',
+		// 	Accept: 'application/json',
+		// 	'Access-Control-Allow-Origin': '*',
+		// 	'Access-Control-Allow-Headers': '*',
+		// 	'Access-Control-Allow-Credentials': 'true',
+		// }
 
 		this.service = axios.create({
 			baseURL: baseUrl,
-			headers: baseHeader,
+			// headers: baseHeader,
 			timeout: 1000 * 15,
 		})
+		this.service.defaults.withCredentials = true
 		this.#setResponseCallBack(successCallback, errorCallback)
+		// this.service.interceptors.request.use(function (config) {
+		// 	return onRequestFulfilled(config)
+		// })
 	}
 
 	#setResponseCallBack(successCallback, errorCallback) {
