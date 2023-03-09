@@ -33,11 +33,13 @@
 
 <script>
 import BottomModal from '@/components/popup/BottomModal'
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
+import { provider } from '@/global/constants/constants'
 export default {
 	name: 'LoginView',
 	components: { BottomModal },
 	setup() {
+		const http = inject(provider.HTTP.VASELINE)
 		const transaction = ref({
 			amount: 0,
 			memo: '',
@@ -46,8 +48,8 @@ export default {
 		const event = {
 			click: () => {
 				console.log('click')
-				// location.href = 'http://localhost:8080/oauth2/authorization/google'
-				location.href = 'http://ec2-3-34-252-227.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
+				location.href = 'http://localhost:8080/oauth2/authorization/google'
+				// location.href = 'http://ec2-3-34-252-227.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
 			},
 			click2: () => {
 				console.log('click')
@@ -62,8 +64,10 @@ export default {
 				location.href = 'http://localhost:8080/oauth2/authorization/facebook'
 			},
 			click5: () => {
-				console.log('로그아웃')
-				location.href = 'http://localhost:8080/logout'
+				console.log('myrythm')
+				http.get('/api/app/my-rythm').then(res => {
+					console.log('res', res)
+				})
 			},
 		}
 
