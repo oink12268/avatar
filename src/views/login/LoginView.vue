@@ -66,7 +66,7 @@ export default {
 			click5: () => {
 				console.log('myrythm')
 				http.get('/api/app/my-rythm').then(res => {
-					console.log('res', res)
+					console.log('myrythm', res)
 				})
 			},
 		}
