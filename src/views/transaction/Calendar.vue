@@ -58,8 +58,14 @@ import dayjs from 'dayjs'
 export default {
 	name: 'Calendar',
 	components: { DateRange },
+	props: {
+		refresh: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	emits: ['selected-date'],
-	setup(_, { emit }) {
+	setup(props, { emit }) {
 		const http = inject(provider.HTTP.VASELINE)
 		const selectedDate = ref(dayjs())
 		const today = ref(dayjs().format('YYYY-MM-DD'))
@@ -69,6 +75,7 @@ export default {
 		const lastMonthStart = ref(0)
 		const prevDay = ref(0)
 		const firstDayOfTheLastWeek = ref(0)
+		const toDate = ref('')
 
 		const focusToday = () => {
 			selectedDate.value = dayjs()
@@ -144,7 +151,12 @@ export default {
 				emit('selected-date', selectedDate.value)
 			},
 		)
-
+		watch(
+			() => props.refresh,
+			_ => {
+				getCalendarData(true, selectedDate.value)
+			},
+		)
 		return {
 			dateType,
 			today,

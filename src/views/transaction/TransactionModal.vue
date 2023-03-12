@@ -27,10 +27,10 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { inject, ref, watch } from 'vue'
 import BottomModal from '@/components/popup/BottomModal'
-import axios from 'axios'
 import dayjs from 'dayjs'
+import { provider } from '@/global/constants/constants'
 
 export default {
 	name: 'TransactionModal',
@@ -51,6 +51,7 @@ export default {
 		},
 	},
 	setup(props, { emit }) {
+		const http = inject(provider.HTTP.VASELINE)
 		const budgets = ref([])
 		const budgetIdx = ref(0)
 		const transaction = ref({
@@ -62,7 +63,10 @@ export default {
 
 		const event = {
 			save: () => {
-				if (props.isPayment) axios.post('/api/app/payment', transaction.value).then(res => {})
+				if (props.isPayment)
+					http.post('/api/app/payment', transaction.value).then(res => {
+						emit('close', true)
+					})
 				else {
 					const param = {
 						amount: transaction.value.amount,
@@ -70,8 +74,9 @@ export default {
 						budgetIdx: budgetIdx.value,
 						date: props.selectedDate,
 					}
-					axios.post('/api/app/income', param).then(res => {})
-					console.log('param', param)
+					http.post('/api/app/income', param).then(res => {
+						emit('close', true)
+					})
 				}
 			},
 			close: () => {
@@ -80,8 +85,8 @@ export default {
 		}
 
 		const getBudgets = () => {
-			axios.get('/api/app/budget').then(res => {
-				budgets.value = res.data
+			http.get('/api/app/budget').then(res => {
+				budgets.value = res
 				budgetIdx.value = budgets.value[0].idx
 			})
 		}

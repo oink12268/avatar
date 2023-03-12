@@ -49,6 +49,14 @@ export default class Http {
 		// url = this.baseUrl + url
 		return this.#send(this.service.post(url, param))
 	}
+	patch(url, param) {
+		// url = this.baseUrl + url
+		return this.#send(this.service.patch(url, param))
+	}
+	delete(url) {
+		// url = this.baseUrl + url
+		return this.#send(this.service.delete(url))
+	}
 	get(url, param = null) {
 		if (url.indexOf('?') === -1 && param && Object.keys(param).length !== 0) url += '?'
 

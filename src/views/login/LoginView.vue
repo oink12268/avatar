@@ -47,24 +47,19 @@ export default {
 		const toggle = ref(false)
 		const event = {
 			click: () => {
-				console.log('click')
-				// location.href = 'http://localhost:8080/oauth2/authorization/google'
-				location.href = 'http://ec2-3-34-252-227.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
+				location.href = 'http://localhost:8080/oauth2/authorization/google'
+				// location.href = 'http://ec2-3-34-252-227.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google'
 			},
 			click2: () => {
-				console.log('click')
 				location.href = 'http://localhost:8080/oauth2/authorization/kakao'
 			},
 			click3: () => {
-				console.log('click')
 				location.href = 'http://localhost:8080/oauth2/authorization/naver'
 			},
 			click4: () => {
-				console.log('click')
 				location.href = 'http://localhost:8080/oauth2/authorization/facebook'
 			},
 			click5: () => {
-				console.log('myrythm')
 				http.get('/api/my-rythm').then(res => {
 					console.log('my-rythm', res)
 				})

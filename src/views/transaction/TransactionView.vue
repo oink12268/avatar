@@ -1,8 +1,8 @@
 <template>
-	<scroll-sticky-content class="scroll-104 bd-light-grey-t01">
+	<scroll-sticky-content class="scroll-56 bd-light-grey-t01">
 		<template #content>
 			<div class="container ph-16">
-				<calendar @selectedDate="event.change" />
+				<calendar @selectedDate="event.change" :refresh="refresh" />
 				<div class="container dp-f align-items-center mb-20">
 					<button class="button-rectangle size-50 large hp-54" @click="event.open(false)">수입</button>
 					<button class="button-rectangle size-50 large hp-54" @click="event.open(true)">지출</button>
@@ -33,7 +33,7 @@
 					:is-open="isOpen"
 					:is-payment="isPayment"
 					:selected-date="selectedDate"
-					@close="isOpen = false"
+					@close="event.close"
 				/>
 			</div>
 		</template>
@@ -59,6 +59,8 @@ export default {
 			payments: [],
 			incomes: [],
 		})
+		const refresh = ref(false)
+
 		const event = {
 			change: date => {
 				selectedDate.value = date.format('YYYY-MM-DD')
@@ -68,22 +70,27 @@ export default {
 				isPayment.value = isPay
 				isOpen.value = true
 			},
+			close: isChange => {
+				isOpen.value = false
+				refresh.value = !refresh.value
+			},
 		}
 
 		const getTransaction = () => {
 			http.get(`/api/app/transaction/${selectedDate.value}`).then(res => {
-				console.log('res', res)
 				datas.value.payments = res.paymentVos
 				datas.value.incomes = res.incomeVos
 			})
 		}
 		getTransaction()
+
 		return {
-			datas,
 			selectedDate,
 			isPayment,
 			isOpen,
 			event,
+			datas,
+			refresh,
 		}
 	},
 }

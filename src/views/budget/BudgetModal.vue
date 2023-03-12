@@ -6,9 +6,13 @@
 			<input type="text" placeholder="국민은행(적금)" v-model="budget.budgetName" />
 		</div>
 
-		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">금액</div>
+		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">1금액</div>
 		<div class="input-field-line-con value-check active">
 			<input type="number" v-model="budget.balance" />
+		</div>
+		<div class="flex1 fw-500 ellipsis fs-16">사용여부</div>
+		<div class="ml-at dp-if align-items-center">
+			<switch-button id="DELIVERY_COMPLETE" v-model="budget.isUse" />
 		</div>
 		<div class="container dp-f align-items-center mt-10">
 			<button class="button-rectangle size-100 large hp-54" @click="event.save">{{ isEdit ? '수정' : '저장' }}</button>
@@ -18,11 +22,11 @@
 
 <script>
 import BottomModal from '@/components/popup/BottomModal'
-import { ref } from 'vue'
+import SwitchButton from '@/components/common/SwitchButton'
 import axios from 'axios'
 export default {
 	name: 'BudgetModal',
-	components: { BottomModal },
+	components: { BottomModal, SwitchButton },
 	props: {
 		isOpen: {
 			type: Boolean,
@@ -38,6 +42,7 @@ export default {
 				return {
 					budgetName: '',
 					balance: 0,
+					isUse: true,
 				}
 			},
 		},

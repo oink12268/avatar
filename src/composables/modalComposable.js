@@ -17,7 +17,7 @@ export default function modalComposable() {
 		if (history.state === 'modal') {
 			history.back()
 		}
-		emit('close')
+		// emit('close')
 		isShow.value = false
 	}
 

@@ -29,13 +29,6 @@ export default {
 		// const isIos = osType.indexOf('ios') >= 0
 
 		const scrollSticky = (isSticky, element) => {
-			// console.log(isSticky, element.scrollTop)
-
-			// if (!isIos) {
-			// 	// ios 높이 조절을 하니 스크롤이 매끄럽지가 않음
-			// 	emit('scroll-sticky', isSticky)
-			// }
-
 			if (props.stickyStart === 0 || element.previousElementSibling === null) return
 			let target = element.previousElementSibling
 

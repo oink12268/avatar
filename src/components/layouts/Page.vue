@@ -20,7 +20,6 @@ export default {
 		const scrollY = ref([])
 
 		onBeforeRouteLeave((to, from, next) => {
-			console.log('onBeforeRouteLeave')
 			const scrollContents = document.querySelectorAll('.content-scroll')
 			scrollContents.forEach(item => {
 				scrollY.value.push(item.scrollTop)
@@ -29,7 +28,6 @@ export default {
 		})
 
 		onBeforeRouteUpdate(() => {
-			console.log('onBeforeRouteUpdate')
 			const scrollContents = document.querySelectorAll('.content-scroll')
 			scrollContents.forEach(item => {
 				scrollY.value.push(item.scrollTop)
@@ -37,7 +35,6 @@ export default {
 		})
 
 		onActivated(() => {
-			console.log('activate')
 			nextTick(() => {
 				const scrollContents = document.querySelectorAll('.content-scroll')
 				scrollContents.forEach((item, no) => {

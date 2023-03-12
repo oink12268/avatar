@@ -1,7 +1,7 @@
 <template>
 	<page>
 		<div class="home">
-			<Header></Header>
+			<!--			<Header></Header>-->
 			<component :is="menuInfo.componentName" info="menuCurTab" />
 		</div>
 		<Footer :service="service" />
