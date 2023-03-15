@@ -1,6 +1,7 @@
 <template>
 	<bottom-modal :is-open="isOpen" @close="event.close">
 		<div v-if="budgets.length > 0" class="toggle-item-box item-length2 mt-12 item-box-max-height">
+			<div class="container fs-15 fw-500 fc-medium-grey">자산</div>
 			<toggle-button
 				v-for="budget in budgets.filter(b => b.isUse === 'Y')"
 				:key="budget"
@@ -11,12 +12,12 @@
 				{{ budget.budgetName }}
 			</toggle-button>
 		</div>
-		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">금액</div>
+		<div class="container mt-10 fs-15 fw-500 fc-medium-grey">금액</div>
 		<div class="input-field-line-con value-check active">
 			<input type="number" placeholder="10,000" v-model="transaction.amount" />
 		</div>
 
-		<div class="container pv-12 fs-12 fw-500 fc-medium-grey">메모</div>
+		<div class="container mt-10 fs-15 fw-500 fc-medium-grey">메모</div>
 		<div class="input-field-line-con value-check active">
 			<input type="text" v-model="transaction.memo" />
 		</div>
