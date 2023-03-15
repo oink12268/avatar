@@ -36,7 +36,7 @@
 					}"
 				>
 					<div class="container ph-4" @click="selectDate(idx, day.day)">
-						<div class="fs-10 ta-l">
+						<div class="fs-10 ta-c">
 							{{ day.day }}
 						</div>
 						<div v-if="day.incomeAmount > 0" class="calendar-price">
