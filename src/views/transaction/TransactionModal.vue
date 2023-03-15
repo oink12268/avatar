@@ -1,6 +1,6 @@
 <template>
 	<bottom-modal :is-open="isOpen" @close="event.close">
-		<div v-if="!isPayment && budgets.length > 0" class="toggle-item-box item-length2 mt-12 item-box-max-height">
+		<div v-if="budgets.length > 0" class="toggle-item-box item-length2 mt-12 item-box-max-height">
 			<toggle-button
 				v-for="budget in budgets.filter(b => b.isUse === 'Y')"
 				:key="budget"

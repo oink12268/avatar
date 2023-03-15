@@ -39,9 +39,14 @@
 						<div class="fs-10 ta-l">
 							{{ day.day }}
 						</div>
-
-						<div class="calendar-price">{{ day.thisMonth === true ? $filters.currency(day.incomeAmount) : ' ' }}</div>
-						<div class="calendar-price">{{ day.thisMonth === true ? $filters.currency(day.paymentAmount) : ' ' }}</div>
+						<div v-if="day.incomeAmount > 0" class="calendar-price">
+							{{ $filters.currency(day.incomeAmount) }}
+						</div>
+						<div v-else class="calendar-price">&nbsp;</div>
+						<div v-if="day.paymentAmount > 0" class="calendar-price">
+							{{ $filters.currency(day.paymentAmount) }}
+						</div>
+						<div v-else class="calendar-price">&nbsp;</div>
 					</div>
 				</div>
 			</div>
