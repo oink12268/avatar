@@ -13,7 +13,7 @@ const responseError = e => {
 }
 
 function vaseline() {
-	return new Http('http://ec2-3-34-252-227.ap-northeast-2.compute.amazonaws.com:8080', responseSuccess, responseError)
+	return new Http('http://ec2-3-34-211-64.ap-northeast-2.compute.amazonaws.com:8080', responseSuccess, responseError)
 	// return new Http(process.env.VUE_APP_VASELINE_API_URL, responseSuccess, responseError)
 	// return new Http('http://localhost:8080', responseSuccess, responseError)
 }
