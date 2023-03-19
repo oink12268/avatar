@@ -7,7 +7,7 @@
 					v-for="(budget, no) in budgets"
 					:key="no"
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
-					@click="event.detail(budget)"
+					@click="event.detail(true, budget)"
 				>
 					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ budget.budgetName }}</span>
 					<button class="ml-at dp-if align-items-center flex-shrink-none">
@@ -20,9 +20,12 @@
 					v-for="(card, no) in cards"
 					:key="no"
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
-					@click="event.detail(card)"
+					@click="event.detail(false, card)"
 				>
 					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ card.budgetName }}</span>
+					<button class="ml-at dp-if align-items-center flex-shrink-none">
+						<span class="fs-12 fc-blue">{{ card.budget }}</span>
+					</button>
 				</div>
 
 				<div class="ta-r"><img class="wh-50" :src="$filters.getImagePath('plus_big.png')" @click="event.new" /></div>
@@ -97,7 +100,7 @@
 </template>
 
 <script>
-import { inject, ref } from 'vue'
+import { inject, ref, watch } from 'vue'
 import BudgetModal from '@/views/budget/BudgetModal'
 import BottomModal from '@/components/popup/BottomModal'
 import { provider } from '@/global/constants/constants'
@@ -114,8 +117,10 @@ export default {
 		const budget = ref({
 			idx: 1,
 			budgetName: '',
+			name: '',
 			balance: 0,
 			isUse: 'Y',
+			isCredit: 'Y',
 		})
 		const selected = ref(0)
 		const selectedCard = ref(0)
@@ -145,7 +150,8 @@ export default {
 						})
 					}
 				} else {
-					budget.value.isCredit = isCredit.value ? 'Y' : 'N'
+					// budget.value.isCredit = isCredit.value ? 'Y' : 'N'
+					budget.value.isCredit = selectedCard.value === 0 ? 'N' : 'Y'
 					budget.value.budgetIdx = selectedBudget.value
 					if (isEdit.value) {
 						http.patch('/api/app/card', budget.value).then(res => {
@@ -158,11 +164,13 @@ export default {
 					}
 				}
 			},
-			detail: data => {
+			detail: (isBudget, data) => {
+				onChange(isBudget ? 0 : 1)
 				budget.value.idx = data.idx
 				budget.value.budgetName = data.budgetName
 				budget.value.balance = data.balance
 				isUse.value = data.isUse === 'Y' ? true : false
+				selectedCard.value = data.isCredit === 'Y' ? 1 : 0
 				isOpen.value = true
 				isEdit.value = true
 			},
@@ -198,6 +206,16 @@ export default {
 		}
 		getBudgets()
 		getCards()
+
+		watch(
+			() => isOpen.value,
+			_ => {
+				if (!isOpen.value) {
+					getBudgets()
+					getCards()
+				}
+			},
+		)
 
 		return {
 			budgets,
