@@ -30,7 +30,7 @@
 
 				<div class="ta-r"><img class="wh-50" :src="$filters.getImagePath('plus_big.png')" @click="event.new" /></div>
 				<bottom-modal :is-open="isOpen" @close="isOpen = false">
-					<div class="toggle-item-box item-length2 mt-12 item-box-max-height">
+					<div v-if="!isEdit" class="toggle-item-box item-length2 mt-12 item-box-max-height">
 						<toggle-button
 							v-for="select in selects"
 							:key="select"
