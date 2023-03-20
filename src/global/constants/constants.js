@@ -22,6 +22,11 @@ const displayText = Object.freeze({
 	MASKING: '****',
 })
 
+const loadingType = Object.freeze({
+	DOT: 'dot',
+	RECEIPT_PRINT: 'receiptPrint',
+})
+
 const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토']
 
-export { provider, sns, dateType, displayText, dayOfWeek }
+export { provider, sns, dateType, displayText, dayOfWeek, loadingType }

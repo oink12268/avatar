@@ -11,10 +11,11 @@
 					v-for="(income, no) in datas.incomes"
 					:key="no"
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
+					@click="event.delete(false, income.idx)"
 				>
 					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ income.memo }}</span>
 					<button class="ml-at dp-if align-items-center flex-shrink-none">
-						<span class="fs-12 fc-blue">{{ $filters.currency(income.amount) }}</span>
+						<span class="fs-12 fc-green2">{{ $filters.currency(income.amount) }}</span>
 					</button>
 				</div>
 
@@ -22,10 +23,11 @@
 					v-for="(payment, no) in datas.payments"
 					:key="no"
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
+					@click="event.delete(true, payment.idx)"
 				>
 					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ payment.memo }}</span>
 					<button class="ml-at dp-if align-items-center flex-shrink-none">
-						<span class="fs-12 fc-red">{{ $filters.currency(payment.amount) }}</span>
+						<span class="fs-12 fc-red2">{{ $filters.currency(payment.amount) }}</span>
 					</button>
 				</div>
 
@@ -46,6 +48,7 @@ import Calendar from '@/views/transaction/Calendar'
 import TransactionModal from '@/views/transaction/TransactionModal'
 import dayjs from 'dayjs'
 import { provider } from '@/global/constants/constants'
+import globalComposable from '@/composables/globalComposable'
 
 export default {
 	name: 'TransactionView',
@@ -60,11 +63,22 @@ export default {
 			incomes: [],
 		})
 		const refresh = ref(false)
+		const { confirm } = globalComposable()
 
 		const event = {
 			change: date => {
 				selectedDate.value = date.format('YYYY-MM-DD')
 				getTransaction()
+			},
+			delete: (isPay, idx) => {
+				confirm('삭제 하시겠습니까?').then(res => {
+					if (res) {
+						http.delete(`/api/app/${isPay ? 'payment' : 'income'}/${idx}`).then(res => {
+							getTransaction()
+							refresh.value = !refresh.value
+						})
+					}
+				})
 			},
 			open: isPay => {
 				isPayment.value = isPay
@@ -99,5 +113,12 @@ export default {
 <style scoped>
 .sales-lab-banner {
 	width: 100vw;
+}
+.fc-green2 {
+	color: #c0d4ad !important;
+}
+
+.fc-red2 {
+	color: #e2a9a5 !important;
 }
 </style>
