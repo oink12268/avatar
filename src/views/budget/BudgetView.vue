@@ -150,7 +150,6 @@ export default {
 						})
 					}
 				} else {
-					// budget.value.isCredit = isCredit.value ? 'Y' : 'N'
 					budget.value.isCredit = selectedCard.value === 0 ? 'N' : 'Y'
 					budget.value.budgetIdx = selectedBudget.value
 					if (isEdit.value) {

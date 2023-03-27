@@ -183,7 +183,7 @@ export default {
 
 <style scoped>
 .calendar-cell.active > div {
-	background-color: #c9d0de;
+	background-color: #efefef;
 	color: #fff;
 }
 .calendar-today {

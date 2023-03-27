@@ -1,6 +1,6 @@
 <template>
 	<bottom-modal :is-open="isOpen" @close="event.close">
-		<div class="toggle-item-box item-length2 mt-12 item-box-max-height">
+		<div class="toggle-item-box item-length3 mt-12 item-box-max-height">
 			<toggle-button
 				v-for="method in paymentMethod"
 				:key="method"
@@ -11,7 +11,7 @@
 				{{ method.name }}
 			</toggle-button>
 		</div>
-		<div v-if="budgets.length > 0 && selected === 0" class="toggle-item-box item-length2 mt-12 item-box-max-height">
+		<div v-if="budgets.length > 0 && selected !== 2" class="toggle-item-box item-length2 mt-12 item-box-max-height">
 			<div class="container fs-15 fw-500 fc-medium-grey">자산</div>
 			<toggle-button
 				v-for="budget in budgets.filter(b => b.isUse === 'Y')"
@@ -23,7 +23,7 @@
 				{{ budget.budgetName }}
 			</toggle-button>
 		</div>
-		<div v-if="cards.length > 0 && selected === 1" class="toggle-item-box item-length2 mt-12 item-box-max-height">
+		<div v-if="cards.length > 0 && selected === 2" class="toggle-item-box item-length2 mt-12 item-box-max-height">
 			<div class="container fs-15 fw-500 fc-medium-grey">카드</div>
 			<toggle-button
 				v-for="card in cards.filter(b => b.isUse === 'Y')"
@@ -35,15 +35,22 @@
 				{{ card.budgetName }}
 			</toggle-button>
 		</div>
-		<div class="container mt-10 fs-15 fw-500 fc-medium-grey">금액</div>
-		<div class="input-field-line-con value-check active">
-			<input type="number" placeholder="10,000" v-model="transaction.amount" />
-		</div>
 
 		<div class="container mt-10 fs-15 fw-500 fc-medium-grey">메모</div>
 		<div class="input-field-line-con value-check active">
 			<input type="text" v-model="transaction.memo" />
 		</div>
+
+		<div class="container mt-10 fs-15 fw-500 fc-medium-grey">금액</div>
+		<div class="input-field-line-con value-check active">
+			<input type="number" placeholder="10,000" v-model="transaction.amount" />
+		</div>
+
+		<div v-if="selected === 1" class="container mt-10 fs-15 fw-500 fc-medium-grey">이체 금액</div>
+		<div v-if="selected === 1" class="input-field-line-con value-check active">
+			<input type="number" placeholder="10,000" v-model="transferAmount" />
+		</div>
+
 		<div class="container dp-f align-items-center mt-10">
 			<button class="button-rectangle size-100 large hp-54" @click="event.save">저장</button>
 		</div>
@@ -55,6 +62,7 @@ import { inject, ref, watch } from 'vue'
 import BottomModal from '@/components/popup/BottomModal'
 import dayjs from 'dayjs'
 import { provider } from '@/global/constants/constants'
+import globalComposable from '@/composables/globalComposable'
 
 export default {
 	name: 'TransactionModal',
@@ -75,6 +83,7 @@ export default {
 		},
 	},
 	setup(props, { emit }) {
+		const { alert } = globalComposable()
 		const http = inject(provider.HTTP.VASELINE)
 		const budgets = ref([])
 		const cards = ref([])
@@ -86,9 +95,11 @@ export default {
 			amount: 0,
 			memo: '',
 		})
+		const transferAmount = ref(0)
 		const paymentMethod = ref([
 			{ name: '현금', id: 0 },
-			{ name: '카드', id: 1 },
+			{ name: '페이', id: 1 },
+			{ name: '카드', id: 2 },
 		])
 		const selected = ref(0)
 
@@ -96,8 +107,17 @@ export default {
 			save: () => {
 				if (props.isPayment) {
 					if (budgetIdx.value !== null) transaction.value.budgetIdx = budgetIdx.value
-					if (selected.value === 1) transaction.value.cardIdx = cardIdx.value
+					if (selected.value === 1) {
+						if (budgetIdx.value === 0) {
+							alert('자산을 선택해 주세요')
+							return
+						}
+						transaction.value.transferAmount = transferAmount.value
+					}
+					if (selected.value === 2) transaction.value.cardIdx = cardIdx.value
 					http.post('/api/app/payment', transaction.value).then(res => {
+						budgetIdx.value = 0
+						cardIdx.value = 0
 						emit('close', true)
 					})
 				} else {
@@ -114,7 +134,7 @@ export default {
 			},
 			select: idx => {
 				selected.value = idx
-				if (idx === 1) cardIdx.value = 0
+				if (idx === 2) cardIdx.value = 0
 				budgetIdx.value = 0
 			},
 			selectCard: card => {
@@ -165,6 +185,7 @@ export default {
 			budgets,
 			cards,
 			budgetIdx,
+			transferAmount,
 			cardIdx,
 			transaction,
 			event,
