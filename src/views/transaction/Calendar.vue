@@ -80,7 +80,6 @@ export default {
 		const lastMonthStart = ref(0)
 		const prevDay = ref(0)
 		const firstDayOfTheLastWeek = ref(0)
-		const toDate = ref('')
 
 		const focusToday = () => {
 			selectedDate.value = dayjs()
