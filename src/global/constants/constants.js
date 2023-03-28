@@ -1,4 +1,5 @@
 const provider = Object.freeze({
+	EVENT_BUS: 'eventBus',
 	HTTP: {
 		VASELINE: 'vaselineApi',
 	},
@@ -27,6 +28,14 @@ const loadingType = Object.freeze({
 	RECEIPT_PRINT: 'receiptPrint',
 })
 
+const transaction = Object.freeze({
+	TRANSACTION_TYPE: [
+		{ code: 0, title: '현금' },
+		{ code: 1, title: '페이' },
+		{ code: 2, title: '카드' },
+	],
+})
+
 const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토']
 
-export { provider, sns, dateType, displayText, dayOfWeek, loadingType }
+export { provider, sns, dateType, displayText, dayOfWeek, loadingType, transaction }

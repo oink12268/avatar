@@ -35,7 +35,6 @@ const scrollElementSticky = {
 		callback(false, el)
 
 		if (stickyMode === 'topZero') {
-			console.log('스크롤 top 0 일때')
 			el.stickyHandler = () => {
 				let currentScroll = el.scrollTop
 				if (currentScroll > 0) {
@@ -49,7 +48,6 @@ const scrollElementSticky = {
 		}
 
 		if (stickyMode === 'upDown') {
-			console.log('스크롤 업다운으로 체크해야할때')
 			let previousScroll = 0
 			el.stickyHandler = () => {
 				let currentScroll = el.scrollTop
@@ -71,7 +69,6 @@ const scrollElementSticky = {
 		}
 	},
 	beforeUnmount: el => {
-		console.log('beforeUnmount scrollElementSticky')
 		el.removeEventListener('scroll', el.stickyHandler)
 		el.removeEventListener('scroll', throttle(el.stickyHandler, 30))
 	},

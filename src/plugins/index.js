@@ -11,10 +11,11 @@ export default {
 		app.config.globalProperties.$filters = filters
 		globalComponent.install(app, options)
 
+		const emitter = mitt()
 		const vaselineHttp = vaselineHttpClient()
 		app.provide(provider.HTTP.VASELINE, vaselineHttp)
+		app.provide(provider.EVENT_BUS, emitter)
 
-		const emitter = mitt()
 		DynamicGlobalComponent.install(app, options, emitter)
 	},
 }

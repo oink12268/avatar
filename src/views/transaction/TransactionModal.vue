@@ -1,17 +1,23 @@
 <template>
 	<bottom-modal :is-open="isOpen" @close="event.close">
-		<div class="toggle-item-box item-length3 mt-12 item-box-max-height">
-			<toggle-button
-				v-for="method in paymentMethod"
-				:key="method"
-				:selected="method.id === selected"
-				:is-wrap="true"
-				@change="event.select(method.id)"
+		<div v-if="isPayment" class="dp-f align-items-center mt-16">
+			<tab-button
+				type="rectangle"
+				style="position: relative; top: 0"
+				:tabs="tabs"
+				:is-custom-title="true"
+				:selected="selectedTitle"
+				@change="event.change.tab"
 			>
-				{{ method.name }}
-			</toggle-button>
+				<template #customTitle0></template>
+				<template #customTitle1></template>
+				<template #customTitle2></template>
+			</tab-button>
 		</div>
-		<div v-if="budgets.length > 0 && selected !== 2" class="toggle-item-box item-length2 mt-12 item-box-max-height">
+		<div
+			v-if="(budgets.length > 0 && selectedCode !== 2) || !isPayment"
+			class="toggle-item-box item-length2 mt-12 item-box-max-height"
+		>
 			<div class="container fs-15 fw-500 fc-medium-grey">자산</div>
 			<toggle-button
 				v-for="budget in budgets.filter(b => b.isUse === 'Y')"
@@ -23,7 +29,10 @@
 				{{ budget.budgetName }}
 			</toggle-button>
 		</div>
-		<div v-if="cards.length > 0 && selected === 2" class="toggle-item-box item-length2 mt-12 item-box-max-height">
+		<div
+			v-if="cards.length > 0 && selectedCode === 2 && isPayment"
+			class="toggle-item-box item-length2 mt-12 item-box-max-height"
+		>
 			<div class="container fs-15 fw-500 fc-medium-grey">카드</div>
 			<toggle-button
 				v-for="card in cards.filter(b => b.isUse === 'Y')"
@@ -46,8 +55,8 @@
 			<input type="number" placeholder="10,000" v-model="transaction.amount" />
 		</div>
 
-		<div v-if="selected === 1" class="container mt-10 fs-15 fw-500 fc-medium-grey">이체 금액</div>
-		<div v-if="selected === 1" class="input-field-line-con value-check active">
+		<div v-if="selectedCode === 1" class="container mt-10 fs-15 fw-500 fc-medium-grey">이체 금액</div>
+		<div v-if="selectedCode === 1" class="input-field-line-con value-check active">
 			<input type="number" placeholder="10,000" v-model="transferAmount" />
 		</div>
 
@@ -61,13 +70,13 @@
 import { inject, ref, watch } from 'vue'
 import BottomModal from '@/components/popup/BottomModal'
 import dayjs from 'dayjs'
-import { provider } from '@/global/constants/constants'
+import { provider, transaction as transactionConst } from '@/global/constants/constants'
 import globalComposable from '@/composables/globalComposable'
-
+import TabButton from '@/components/common/TabButton'
 export default {
 	name: 'TransactionModal',
 	emits: ['close'],
-	components: { BottomModal },
+	components: { BottomModal, TabButton },
 	props: {
 		isOpen: {
 			type: Boolean,
@@ -96,25 +105,37 @@ export default {
 			memo: '',
 		})
 		const transferAmount = ref(0)
-		const paymentMethod = ref([
-			{ name: '현금', id: 0 },
-			{ name: '페이', id: 1 },
-			{ name: '카드', id: 2 },
-		])
-		const selected = ref(0)
+		const tabs = ref(
+			Object.freeze([
+				{
+					code: transactionConst.TRANSACTION_TYPE[0].code,
+					title: transactionConst.TRANSACTION_TYPE[0].title,
+				},
+				{
+					code: transactionConst.TRANSACTION_TYPE[1].code,
+					title: transactionConst.TRANSACTION_TYPE[1].title,
+				},
+				{
+					code: transactionConst.TRANSACTION_TYPE[2].code,
+					title: transactionConst.TRANSACTION_TYPE[2].title,
+				},
+			]),
+		)
+		const selectedCode = ref(0)
+		const selectedTitle = ref('현금')
 
 		const event = {
 			save: () => {
 				if (props.isPayment) {
 					if (budgetIdx.value !== null) transaction.value.budgetIdx = budgetIdx.value
-					if (selected.value === 1) {
+					if (selectedCode.value === 1) {
 						if (budgetIdx.value === 0) {
 							alert('자산을 선택해 주세요')
 							return
 						}
 						transaction.value.transferAmount = transferAmount.value
 					}
-					if (selected.value === 2) transaction.value.cardIdx = cardIdx.value
+					if (selectedCode.value === 2) transaction.value.cardIdx = cardIdx.value
 					http.post('/api/app/payment', transaction.value).then(res => {
 						budgetIdx.value = 0
 						cardIdx.value = 0
@@ -132,10 +153,15 @@ export default {
 					})
 				}
 			},
-			select: idx => {
-				selected.value = idx
-				if (idx === 2) cardIdx.value = 0
-				budgetIdx.value = 0
+			change: {
+				tab: (title, payload) => {
+					if (selectedCode.value !== payload.code) {
+						selectedCode.value = payload.code
+						if (payload === 2) cardIdx.value = 0
+						budgetIdx.value = 0
+						selectedTitle.value = title
+					}
+				},
 			},
 			selectCard: card => {
 				budgetIdx.value = card.budgetIdx
@@ -148,8 +174,10 @@ export default {
 
 		const getBudgets = () => {
 			http.get('/api/app/budget').then(res => {
-				budgets.value = res
-				budgetIdx.value = budgets.value[0].idx
+				if (res.length > 0) {
+					budgets.value = res
+					budgetIdx.value = budgets.value[0].idx
+				}
 			})
 		}
 
@@ -180,15 +208,16 @@ export default {
 		)
 
 		return {
-			paymentMethod,
-			selected,
+			selectedCode,
 			budgets,
+			tabs,
 			cards,
 			budgetIdx,
 			transferAmount,
 			cardIdx,
 			transaction,
 			event,
+			selectedTitle,
 			onChange,
 		}
 	},
