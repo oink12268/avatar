@@ -36,6 +36,12 @@ const transaction = Object.freeze({
 	],
 })
 
+const statistics = Object.freeze({
+	STATISTICS_REPORT_TYPE: [
+		{ code: 0, title: '월간' },
+		{ code: 1, title: '연간' },
+	],
+})
 const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토']
 
-export { provider, sns, dateType, displayText, dayOfWeek, loadingType, transaction }
+export { provider, sns, dateType, displayText, dayOfWeek, loadingType, transaction, statistics }

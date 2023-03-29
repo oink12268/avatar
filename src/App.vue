@@ -19,7 +19,7 @@ export default {
 				const param = {
 					date: dayjs().format('YYYY-MM-DD'),
 				}
-				http.get('/api/app/transaction', param).then(res => {
+				http.get(`/api/app/transaction`, param).then(res => {
 					console.log('res', res)
 				})
 			},

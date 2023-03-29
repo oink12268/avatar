@@ -101,7 +101,7 @@ export default {
 		const transaction = ref({
 			date: dayjs().format('YYYY-MM-DD'),
 			categoryName: 'beauty',
-			amount: 0,
+			amount: '',
 			memo: '',
 		})
 		const transferAmount = ref(0)
