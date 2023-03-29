@@ -60,4 +60,19 @@ const debounce = (callback, limit = 300) => {
 	}
 }
 
-export { dateFormat, dateNowToString, dateCompare, getImagePath, currency, toQueryString, throttle, debounce }
+const getEllipsis = (data, maxLength = 15) => {
+	if (data.length <= maxLength) return data
+	return data.substring(0, maxLength).concat('...')
+}
+
+export {
+	dateFormat,
+	dateNowToString,
+	dateCompare,
+	getImagePath,
+	currency,
+	toQueryString,
+	throttle,
+	debounce,
+	getEllipsis,
+}

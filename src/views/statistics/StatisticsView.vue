@@ -32,6 +32,7 @@
 						</div>
 					</div>
 				</div>
+				<payment-pie-chart :from-date="fromDate" :to-date="toDate" />
 			</div>
 		</template>
 	</scroll-sticky-content>
@@ -44,12 +45,21 @@ import { statistics as statisticsConst, dateType, provider } from '@/global/cons
 import DateRange from '@/views/transaction/DateRange'
 import dayjs from 'dayjs'
 import { toQueryString } from '@/global/utils'
+import PaymentPieChart from '@/views/statistics/PaymentPieChart'
 
 export default {
 	name: 'StatisticsView',
-	components: { TabButton, DateRange },
+	components: { PaymentPieChart, TabButton, DateRange },
 	setup() {
 		const http = inject(provider.HTTP.VASELINE)
+		const selectedTitle = ref('월간')
+		const selectedCode = ref(0)
+		const today = ref(dayjs().format('YYYY-MM-DD'))
+		const selectedDate = ref(dayjs())
+		const incomeSumAmount = ref(0)
+		const paymentSumAmount = ref(0)
+		const fromDate = ref('')
+		const toDate = ref('')
 
 		const tabs = ref(
 			Object.freeze([
@@ -63,12 +73,6 @@ export default {
 				},
 			]),
 		)
-		const selectedTitle = ref('월간')
-		const selectedCode = ref(0)
-		const today = ref(dayjs().format('YYYY-MM-DD'))
-		const selectedDate = ref(dayjs())
-		const incomeSumAmount = ref(0)
-		const paymentSumAmount = ref(0)
 
 		const event = {
 			change: {
@@ -78,11 +82,13 @@ export default {
 						selectedTitle.value = title
 					}
 				},
-				date: (refresh = false, toDate) => {
-					selectedDate.value = selectedDate.value.set('M', dayjs(toDate).get('M'))
+				date: (refresh = false, date) => {
+					selectedDate.value = selectedDate.value.set('M', dayjs(date).get('M'))
+					fromDate.value = selectedDate.value.set('D', 1).format('YYYY-MM-DD')
+					toDate.value = dayjs(date).set('D', dayjs(date).daysInMonth()).format('YYYY-MM-DD')
 					const param = {
-						fromDate: selectedDate.value.set('D', 1).format('YYYY-MM-DD'),
-						toDate: dayjs(toDate).set('D', dayjs(toDate).daysInMonth()).format('YYYY-MM-DD'),
+						fromDate: fromDate.value,
+						toDate: toDate.value,
 					}
 
 					const paramToString = toQueryString(param)
@@ -105,6 +111,8 @@ export default {
 			selectedDate,
 			incomeSumAmount,
 			paymentSumAmount,
+			fromDate,
+			toDate,
 		}
 	},
 }
