@@ -2,7 +2,7 @@
 	<scroll-sticky-content class="scroll-56 bd-light-grey-t01">
 		<template #content>
 			<div class="container pa-16">
-				<div class="container pv-12 fs-20 fw-500 fc-medium-grey">자산</div>
+				<div class="container mb-5 fs-20 fw-500 fc-medium-grey">자산</div>
 				<div
 					v-for="(budget, no) in budgets"
 					:key="no"
@@ -15,7 +15,7 @@
 					</button>
 				</div>
 
-				<div class="container pv-12 fs-20 fw-500 fc-medium-grey">카드</div>
+				<div class="container mt-20 mb-5 fs-20 fw-500 fc-medium-grey">카드</div>
 				<div
 					v-for="(card, no) in cards"
 					:key="no"

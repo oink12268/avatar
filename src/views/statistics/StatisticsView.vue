@@ -2,19 +2,19 @@
 	<scroll-sticky-content class="scroll-56 bd-light-grey-t01">
 		<template #content>
 			<div class="container ph-16">
-				<div class="dp-f align-items-center mt-16">
-					<tab-button
-						type="rectangle"
-						style="position: relative; top: 0"
-						:tabs="tabs"
-						:is-custom-title="true"
-						:selected="selectedTitle"
-						@change="event.change.tab"
-					>
-						<template #customTitle0></template>
-						<template #customTitle1></template>
-					</tab-button>
-				</div>
+				<!--				<div class="dp-f align-items-center mt-16">-->
+				<!--					<tab-button-->
+				<!--						type="rectangle"-->
+				<!--						style="position: relative; top: 0"-->
+				<!--						:tabs="tabs"-->
+				<!--						:is-custom-title="true"-->
+				<!--						:selected="selectedTitle"-->
+				<!--						@change="event.change.tab"-->
+				<!--					>-->
+				<!--						<template #customTitle0></template>-->
+				<!--						<template #customTitle1></template>-->
+				<!--					</tab-button>-->
+				<!--				</div>-->
 				<date-range :mode="dateType.MONTH" :to-date="today" @selectedDate="event.change.date" />
 				<div class="pa-12 bdr-8 bg-light-grey2">
 					<div class="container dp-f align-items-center">
