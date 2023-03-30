@@ -57,7 +57,7 @@
 
 		<div v-if="selectedCode === 1" class="container mt-10 fs-15 fw-500 fc-medium-grey">이체 금액</div>
 		<div v-if="selectedCode === 1" class="input-field-line-con value-check active">
-			<input type="number" placeholder="10,000" v-model="transferAmount" />
+			<input type="number" placeholder="10,000" v-model="payAmount" />
 		</div>
 
 		<div class="container dp-f align-items-center mt-10">
@@ -104,7 +104,7 @@ export default {
 			amount: '',
 			memo: '',
 		})
-		const transferAmount = ref(0)
+		const payAmount = ref(0)
 		const tabs = ref(
 			Object.freeze([
 				{
@@ -133,7 +133,7 @@ export default {
 							alert('자산을 선택해 주세요')
 							return
 						}
-						transaction.value.transferAmount = transferAmount.value
+						transaction.value.payAmount = payAmount.value
 					}
 					if (selectedCode.value === 2) transaction.value.cardIdx = cardIdx.value
 					http.post('/api/app/payment', transaction.value).then(res => {
@@ -213,7 +213,7 @@ export default {
 			tabs,
 			cards,
 			budgetIdx,
-			transferAmount,
+			payAmount,
 			cardIdx,
 			transaction,
 			event,

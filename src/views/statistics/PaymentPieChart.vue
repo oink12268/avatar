@@ -148,15 +148,6 @@ export default {
 						})
 					}
 
-					const calcPayRate =
-						100 -
-						payPieChart.data.datasets[0].tooltipData
-							.map(o => o.rate)
-							.reduce((a, b) => {
-								return a + b
-							})
-					payPieChart.data.datasets[0].tooltipData[0].rate += calcPayRate
-
 					nextTick(_ => {
 						payPieChartRef.value.update()
 						totalData.value = {
@@ -172,14 +163,6 @@ export default {
 								}),
 						}
 						listDatas.value = res
-						const calcPayRate =
-							100 -
-							res
-								.map(o => o.rate)
-								.reduce((a, b) => {
-									return a + b
-								})
-						listDatas.value[0].rate += calcPayRate
 						viewListDatas.value = listDatas.value.slice(0, 5)
 					})
 				}
