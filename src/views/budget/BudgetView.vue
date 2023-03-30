@@ -27,6 +27,7 @@
 						<span class="fs-12 fc-blue">{{ card.budget }}</span>
 					</button>
 				</div>
+				<div v-if="cards.length <= 0" class="flex-center pv-20 fc-grey">카드를 추가하세요.</div>
 
 				<div class="ta-r"><img class="wh-50" :src="$filters.getImagePath('plus_big.png')" @click="event.new" /></div>
 				<bottom-modal :is-open="isOpen" @close="isOpen = false">
