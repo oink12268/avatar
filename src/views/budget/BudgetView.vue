@@ -48,39 +48,39 @@
 						<input type="text" placeholder="자산명 또는 카드명" v-model="budget.budgetName" />
 					</div>
 
-					<div v-if="selected === 0" class="container mt-30 fs-12 fw-500 fc-medium-grey">금액</div>
-					<div v-if="selected === 0" class="input-field-line-con value-check active">
-						<input type="number" v-model="budget.balance" />
+					<div v-if="selected === 0">
+						<div class="container mt-30 fs-12 fw-500 fc-medium-grey">금액</div>
+						<div class="input-field-line-con value-check active">
+							<input type="number" v-model="budget.balance" />
+						</div>
 					</div>
-					<div v-if="selected === 1" class="container mt-30 fs-12 fw-500 fc-medium-grey">카드 종류</div>
-					<div v-if="selected === 1" class="toggle-item-box item-length2 mt-6 item-box-max-height">
-						<toggle-button
-							v-for="card in cardKinds"
-							:key="card"
-							:selected="card.id === selectedCard"
-							:is-wrap="true"
-							@change="onChangeCard(card.id)"
-						>
-							{{ card.name }}
-						</toggle-button>
+					<div v-if="selected === 1">
+						<div class="container mt-30 fs-12 fw-500 fc-medium-grey">카드 종류</div>
+						<div class="toggle-item-box item-length2 mt-6 item-box-max-height">
+							<toggle-button
+								v-for="card in cardKinds"
+								:key="card"
+								:selected="card.id === selectedCard"
+								:is-wrap="true"
+								@change="onChangeCard(card.id)"
+							>
+								{{ card.name }}
+							</toggle-button>
+						</div>
 					</div>
-
-					<div v-if="selected === 1 && selectedCard === 0" class="container mt-30 fs-12 fw-500 fc-medium-grey">
-						카드 은행
-					</div>
-					<div
-						v-if="selected === 1 && selectedCard === 0"
-						class="toggle-item-box item-length2 mt-6 item-box-max-height"
-					>
-						<toggle-button
-							v-for="budget in budgets.filter(b => b.budgetName !== '현금')"
-							:key="budget"
-							:selected="budget.idx === selectedBudget"
-							:is-wrap="true"
-							@change="onChangeBudget(budget.idx)"
-						>
-							{{ budget.budgetName }}
-						</toggle-button>
+					<div v-if="selected === 1 && selectedCard === 0">
+						<div class="container mt-30 fs-12 fw-500 fc-medium-grey">카드 은행</div>
+						<div class="toggle-item-box item-length2 mt-6 item-box-max-height">
+							<toggle-button
+								v-for="budget in budgets.filter(b => b.budgetName !== '현금')"
+								:key="budget"
+								:selected="budget.idx === selectedBudget"
+								:is-wrap="true"
+								@change="onChangeBudget(budget.idx)"
+							>
+								{{ budget.budgetName }}
+							</toggle-button>
+						</div>
 					</div>
 
 					<div class="dp-f container align-items-center mt-30">

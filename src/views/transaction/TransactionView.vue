@@ -3,12 +3,12 @@
 		<template #content>
 			<div class="container ph-16">
 				<calendar @selectedDate="event.change" :refresh="refresh" />
-				<div class="container dp-f align-items-center mb-20">
+				<div class="container dp-f align-items-center mt-10 mb-20">
 					<button class="button-rectangle size-50 large hp-54" @click="event.open(false)">수입</button>
 					<button class="button-rectangle size-50 large hp-54" @click="event.open(true)">지출</button>
 				</div>
 				<div
-					v-for="(income, no) in datas.incomes"
+					v-for="(income, no) in datas.incomeVos"
 					:key="no"
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
 					@click="event.delete(false, income.idx)"
@@ -20,7 +20,7 @@
 				</div>
 
 				<div
-					v-for="(payment, no) in datas.payments"
+					v-for="(payment, no) in datas.paymentVos"
 					:key="no"
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
 					@click="event.delete(true, payment.idx)"
@@ -59,8 +59,8 @@ export default {
 		const isPayment = ref(false)
 		const isOpen = ref(false)
 		const datas = ref({
-			payments: [],
-			incomes: [],
+			paymentVos: [],
+			incomeVos: [],
 		})
 		const refresh = ref(false)
 		const { confirm } = globalComposable()
@@ -73,7 +73,7 @@ export default {
 			delete: (isPay, idx) => {
 				confirm('삭제 하시겠습니까?').then(res => {
 					if (res) {
-						http.delete(`/api/app/${isPay ? 'payment' : 'income'}/${idx}`).then(res => {
+						http.delete(`/api/app/${isPay ? 'payment' : 'income'}/${idx}`).then(_ => {
 							getTransaction()
 							refresh.value = !refresh.value
 						})
@@ -84,7 +84,7 @@ export default {
 				isPayment.value = isPay
 				isOpen.value = true
 			},
-			close: isChange => {
+			close: () => {
 				isOpen.value = false
 				refresh.value = !refresh.value
 			},
@@ -92,8 +92,7 @@ export default {
 
 		const getTransaction = () => {
 			http.get(`/api/app/transaction/${selectedDate.value}`).then(res => {
-				datas.value.payments = res.paymentVos
-				datas.value.incomes = res.incomeVos
+				datas.value = res
 			})
 		}
 		getTransaction()

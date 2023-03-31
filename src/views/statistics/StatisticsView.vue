@@ -39,13 +39,13 @@
 </template>
 
 <script>
-import { inject, ref } from 'vue'
+import PaymentPieChart from '@/views/statistics/PaymentPieChart'
 import TabButton from '@/components/common/TabButton'
-import { statistics as statisticsConst, dateType, provider } from '@/global/constants/constants'
 import DateRange from '@/views/transaction/DateRange'
 import dayjs from 'dayjs'
+import { inject, ref } from 'vue'
 import { toQueryString } from '@/global/utils'
-import PaymentPieChart from '@/views/statistics/PaymentPieChart'
+import { statistics as statisticsConst, dateType, provider } from '@/global/constants/constants'
 
 export default {
 	name: 'StatisticsView',

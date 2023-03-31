@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/login/LoginView.vue'
 import DashboardView from '@/views/transaction/TransactionView'
 import { homeModules } from '@/router/home'
+import { otherModules } from '@/router/other'
 
 const routers = [
 	{
@@ -19,7 +20,7 @@ const routers = [
 
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
-	routes: [...routers, ...homeModules],
+	routes: [...routers, ...homeModules, ...otherModules],
 })
 
 export default router

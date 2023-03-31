@@ -7,7 +7,7 @@
 			>
 				오늘
 			</button>
-			<date-range :mode="dateType.MONTH" :to-date="today" @selectedDate="getCalendarData" />
+			<date-range :mode="dateType.MONTH" :to-date="today" :is-search="true" @selectedDate="getCalendarData" />
 		</div>
 
 		<div class="calendar-box">
@@ -195,5 +195,11 @@ export default {
 
 .fc-red2 {
 	color: #e2a9a5 !important;
+}
+
+.calendar-box {
+	position: relative;
+	width: 100%;
+	padding: 0px 0;
 }
 </style>

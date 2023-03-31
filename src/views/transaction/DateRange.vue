@@ -1,5 +1,5 @@
 <template>
-	<div class="flex-center container pv-12">
+	<div class="flex-center container pv-12" :class="{ 'ml-70': isSearch }">
 		<button v-if="isChange" class="ic24_arrow_l_bold ic_medium-grey" @click="event.click.dateChange('before')"></button>
 		<div class="ph-6 fs-18 fw-500">{{ dateByMode }}</div>
 		<button
@@ -8,6 +8,7 @@
 			:class="isAfter ? 'ic_medium-grey' : 'ic_grey2'"
 			@click="event.click.dateChange('after')"
 		></button>
+		<img v-if="isSearch" class="ml-40 wh-30" :src="$filters.getImagePath('search.svg')" @click="event.click.search" />
 	</div>
 </template>
 
@@ -16,6 +17,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { dateType } from '@/global/constants/constants'
 import { dateFormat, dateNowToString, dateCompare } from '@/global/utils'
 import dayjs from 'dayjs'
+import { useRouter } from 'vue-router'
 
 export default {
 	name: 'DateRange',
@@ -39,12 +41,17 @@ export default {
 			type: Boolean,
 			default: true,
 		},
+		isSearch: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	emits: ['selected-date'],
 	setup(props, { emit }) {
 		const dateByMode = ref('')
 		const currentDate = dateNowToString('YYYY-MM-DD')
 		const settingDate = ref('')
+		const router = useRouter()
 
 		const getSettingDate = () => {
 			const isBeforeDate = dateCompare(props.toDate, currentDate)
@@ -89,6 +96,9 @@ export default {
 						.add(type === 'before' ? -1 : 1, props.mode)
 						.format('YYYY-MM-DD')
 					getDateByMode(settingDate.value)
+				},
+				search: () => {
+					router.push('/search')
 				},
 			},
 		}

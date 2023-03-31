@@ -55,9 +55,11 @@
 			<input type="number" placeholder="10,000" v-model="transaction.amount" />
 		</div>
 
-		<div v-if="selectedCode === 1" class="container mt-10 fs-15 fw-500 fc-medium-grey">이체 금액</div>
-		<div v-if="selectedCode === 1" class="input-field-line-con value-check active">
-			<input type="number" placeholder="10,000" v-model="payAmount" />
+		<div v-if="selectedCode === 1">
+			<div class="container mt-10 fs-15 fw-500 fc-medium-grey">이체 금액</div>
+			<div class="input-field-line-con value-check active">
+				<input type="number" placeholder="10,000" v-model="payAmount" />
+			</div>
 		</div>
 
 		<div class="container dp-f align-items-center mt-10">
@@ -148,7 +150,7 @@ export default {
 						budgetIdx: budgetIdx.value,
 						date: props.selectedDate,
 					}
-					http.post('/api/app/income', param).then(res => {
+					http.post('/api/app/income', param).then(_ => {
 						emit('close', true)
 					})
 				}
