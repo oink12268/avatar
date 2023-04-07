@@ -14,9 +14,8 @@
 					@click="event.delete(false, income.idx)"
 				>
 					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ income.memo }}</span>
-					<button class="ml-at dp-if align-items-center flex-shrink-none">
-						<span class="fs-12 fc-green2">{{ $filters.currency(income.amount) }}</span>
-					</button>
+					<span class="ml-at fs-12">{{ income.budgetName }}</span>
+					<span class="ml-20 fs-12 fc-green2">{{ $filters.currency(income.amount) }}</span>
 				</div>
 
 				<div
@@ -26,9 +25,8 @@
 					@click="event.delete(true, payment.idx)"
 				>
 					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ payment.memo }}</span>
-					<button class="ml-at dp-if align-items-center flex-shrink-none">
-						<span class="fs-12 fc-red2">{{ $filters.currency(payment.amount) }}</span>
-					</button>
+					<span class="ml-at fs-12">{{ payment.paymentName }}</span>
+					<span class="ml-20 fs-12 fc-red2">{{ $filters.currency(payment.amount) }}</span>
 				</div>
 
 				<transaction-modal
