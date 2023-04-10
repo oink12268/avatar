@@ -95,7 +95,7 @@ export default {
 	},
 	metaInfo: {
 		title: 'TransactionModalMeta',
-		meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }],
+		meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0' }],
 	},
 	setup(props, { emit }) {
 		const { alert } = globalComposable()
