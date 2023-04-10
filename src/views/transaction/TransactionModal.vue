@@ -93,10 +93,6 @@ export default {
 			default: dayjs().format('YYYY-MM-DD'),
 		},
 	},
-	metaInfo: {
-		title: 'TransactionModalMeta',
-		meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0' }],
-	},
 	setup(props, { emit }) {
 		const { alert } = globalComposable()
 		const http = inject(provider.HTTP.VASELINE)
