@@ -15,10 +15,6 @@ export default {
 	components: {},
 	setup() {
 		useMeta({
-			title: '',
-			htmlAttrs: { lang: 'en', amp: true },
-		})
-		useMeta({
 			title: 'TransactionModalMeta',
 			meta: [
 				{ charset: 'utf-8' },
