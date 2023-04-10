@@ -51,6 +51,10 @@ import globalComposable from '@/composables/globalComposable'
 export default {
 	name: 'TransactionView',
 	components: { TransactionModal, Calendar },
+	metaInfo: {
+		title: 'Tripllo',
+		meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }],
+	},
 	setup() {
 		const http = inject(provider.HTTP.VASELINE)
 		const selectedDate = ref(dayjs().format('YYYY-MM-DD'))

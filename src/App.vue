@@ -10,7 +10,6 @@ import { provider } from '@/global/constants/constants'
 import dayjs from 'dayjs'
 export default {
 	name: 'App',
-
 	components: {},
 	setup() {
 		const http = inject(provider.HTTP.VASELINE)
