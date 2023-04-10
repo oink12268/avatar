@@ -93,15 +93,6 @@ export default {
 			default: dayjs().format('YYYY-MM-DD'),
 		},
 	},
-	metaInfo: {
-		title: 'TransactionModalMeta',
-		meta: [
-			{ charset: 'utf-8' },
-			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ vmid: 'description', name: 'description', content: 'description' },
-			//vmid ↑ 메타 태그를 고유하게 만들어준다.
-		],
-	},
 	setup(props, { emit }) {
 		const { alert } = globalComposable()
 		const http = inject(provider.HTTP.VASELINE)
