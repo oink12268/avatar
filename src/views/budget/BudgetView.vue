@@ -32,30 +32,35 @@
 				<div class="ta-r"><img class="wh-50" :src="$filters.getImagePath('plus_big.png')" @click="event.new" /></div>
 				<bottom-modal :is-open="isOpen" @close="isOpen = false">
 					<div v-if="!isEdit" class="toggle-item-box item-length2 mt-12 item-box-max-height">
-						<toggle-button
-							v-for="select in selects"
-							:key="select"
-							:selected="select.id === selected"
-							:is-wrap="true"
-							@change="onChange(select.id)"
+						<tab-button
+							type="rectangle"
+							style="position: relative; top: 0"
+							:tabs="tabs"
+							:is-custom-title="true"
+							:selected="selectedTitle"
+							@change="event.change.tab"
 						>
-							{{ select.name }}
-						</toggle-button>
+							<template #customTitle0></template>
+							<template #customTitle1></template>
+							<template #customTitle2></template>
+						</tab-button>
 					</div>
-
-					<div class="container mt-30 fs-12 fw-500 fc-medium-grey">{{ selected === 0 ? '자산명' : '카드명' }}</div>
-					<div class="input-field-line-con value-check active">
-						<input type="text" placeholder="자산명 또는 카드명" v-model="budget.budgetName" />
+					<div v-if="selectedCode !== 2">
+						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">
+							{{ selectedCode === 0 ? '자산명' : '카드명' }}
+						</div>
+						<div class="input-field-line-con value-check active">
+							<input type="text" placeholder="자산명 또는 카드명" v-model="budget.budgetName" />
+						</div>
 					</div>
-
-					<div v-if="selected === 0">
-						<div class="container mt-30 fs-12 fw-500 fc-medium-grey">금액</div>
+					<div v-if="selectedCode === 0">
+						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">금액</div>
 						<div class="input-field-line-con value-check active">
 							<input type="number" v-model="budget.balance" />
 						</div>
 					</div>
-					<div v-if="selected === 1">
-						<div class="container mt-30 fs-12 fw-500 fc-medium-grey">카드 종류</div>
+					<div v-if="selectedCode === 1">
+						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">카드 종류</div>
 						<div class="toggle-item-box item-length2 mt-6 item-box-max-height">
 							<toggle-button
 								v-for="card in cardKinds"
@@ -68,14 +73,15 @@
 							</toggle-button>
 						</div>
 					</div>
-					<div v-if="selected === 1 && selectedCard === 0">
-						<div class="container mt-30 fs-12 fw-500 fc-medium-grey">카드 은행</div>
-						<div class="toggle-item-box item-length2 mt-6 item-box-max-height">
+					<div v-if="selectedCode === 1 && selectedCard === 0">
+						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">카드 은행</div>
+						<div class="toggle-item-box item-length2 mt-6">
 							<toggle-button
-								v-for="budget in budgets.filter(b => b.budgetName !== '현금')"
+								v-for="budget in budgets.filter(b => b.isUse !== 'N')"
 								:key="budget"
 								:selected="budget.idx === selectedBudget"
 								:is-wrap="true"
+								class="hp-10 pv-5"
 								@change="onChangeBudget(budget.idx)"
 							>
 								{{ budget.budgetName }}
@@ -83,13 +89,13 @@
 						</div>
 					</div>
 
-					<div class="dp-f container align-items-center mt-30">
+					<div class="dp-f container align-items-center mt-25">
 						<div class="flex1 fw-500 ellipsis fs-16">사용여부</div>
 						<div class="ml-at dp-if align-items-center">
 							<switch-button id="DELIVERY_COMPLETE" v-model="isUse" />
 						</div>
 					</div>
-					<div class="container dp-f align-items-center mt-30">
+					<div class="container dp-f align-items-center mt-25">
 						<button class="button-rectangle size-100 large hp-54" @click="event.save">
 							{{ isEdit ? '수정' : '저장' }}
 						</button>
@@ -104,11 +110,12 @@
 import { inject, ref, watch } from 'vue'
 import BudgetModal from '@/views/budget/BudgetModal'
 import BottomModal from '@/components/popup/BottomModal'
-import { provider } from '@/global/constants/constants'
+import { provider, budget as budgetConst } from '@/global/constants/constants'
 import SwitchButton from '@/components/common/SwitchButton'
+import TabButton from '@/components/common/TabButton'
 export default {
 	name: 'BudgetView',
-	components: { BudgetModal, BottomModal, SwitchButton },
+	components: { BudgetModal, BottomModal, SwitchButton, TabButton },
 	setup() {
 		const http = inject(provider.HTTP.VASELINE)
 		const isOpen = ref(false)
@@ -123,13 +130,34 @@ export default {
 			isUse: 'Y',
 			isCredit: 'Y',
 		})
-		const selected = ref(0)
+		const autoPay = ref({
+			name: '',
+			balance: 0,
+			fromIdx: 0,
+			toIdx: 0,
+			isUse: 'Y',
+		})
 		const selectedCard = ref(0)
 		const selectedBudget = ref(0)
-		const selects = ref([
-			{ name: '자산', id: 0 },
-			{ name: '카드', id: 1 },
-		])
+		const tabs = ref(
+			Object.freeze([
+				{
+					code: budgetConst.BUDGET_TYPE[0].code,
+					title: budgetConst.BUDGET_TYPE[0].title,
+				},
+				{
+					code: budgetConst.BUDGET_TYPE[1].code,
+					title: budgetConst.BUDGET_TYPE[1].title,
+				},
+				{
+					code: budgetConst.BUDGET_TYPE[2].code,
+					title: budgetConst.BUDGET_TYPE[2].title,
+				},
+			]),
+		)
+		const selectedTitle = ref('자산')
+		const selectedCode = ref(0)
+
 		const cardKinds = ref([
 			{ name: '체크카드', id: 0 },
 			{ name: '신용카드', id: 1 },
@@ -140,7 +168,7 @@ export default {
 		const event = {
 			save: () => {
 				budget.value.isUse = isUse.value ? 'Y' : 'N'
-				if (selected.value === 0) {
+				if (selectedCode.value === 0) {
 					if (isEdit.value) {
 						http.patch('/api/app/budget', budget.value).then(res => {
 							isOpen.value = false
@@ -164,8 +192,17 @@ export default {
 					}
 				}
 			},
+			change: {
+				tab: (title, payload) => {
+					console.log(title, payload)
+					if (selectedCode.value !== payload.code) {
+						selectedCode.value = payload.code
+						selectedTitle.value = title
+					}
+				},
+			},
 			detail: (isBudget, data) => {
-				onChange(isBudget ? 0 : 1)
+				selectedCode.value = isBudget ? 0 : 1
 				budget.value.idx = data.idx
 				budget.value.budgetName = data.budgetName
 				budget.value.balance = data.balance
@@ -180,9 +217,6 @@ export default {
 				isOpen.value = true
 				isEdit.value = false
 			},
-		}
-		const onChange = idx => {
-			selected.value = idx
 		}
 
 		const onChangeCard = idx => {
@@ -220,20 +254,21 @@ export default {
 		return {
 			budgets,
 			cards,
-			selects,
+			tabs,
 			budget,
 			isOpen,
 			isEdit,
 			isUse,
 			isCredit,
 			event,
-			selected,
 			selectedCard,
-			onChange,
 			onChangeCard,
 			onChangeBudget,
 			selectedBudget,
 			cardKinds,
+			selectedTitle,
+			selectedCode,
+			autoPay,
 		}
 	},
 }

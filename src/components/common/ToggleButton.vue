@@ -2,7 +2,7 @@
 	<button
 		class="button-toggle"
 		:class="{ active: selected || modelValue }"
-		:style="{ minHeight: isWrap ? '60px' : 'unset' }"
+		:style="{ minHeight: isWrap ? '40px' : 'unset' }"
 		:disabled="disabled"
 		@click="onClick"
 	>

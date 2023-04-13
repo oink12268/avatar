@@ -14,35 +14,34 @@
 				<template #customTitle2></template>
 			</tab-button>
 		</div>
-		<div
-			v-if="(budgets.length > 0 && selectedCode !== 2) || !isPayment"
-			class="toggle-item-box item-length2 mt-12 item-box-max-height"
-		>
-			<div class="container fs-15 fw-500 fc-medium-grey">자산</div>
-			<toggle-button
-				v-for="budget in budgets.filter(b => b.isUse === 'Y')"
-				:key="budget"
-				:selected="budget.idx === budgetIdx"
-				:is-wrap="true"
-				@change="onChange(budget.idx)"
-			>
-				{{ budget.budgetName }}
-			</toggle-button>
+		<div v-if="(budgets.length > 0 && selectedCode !== 2) || !isPayment">
+			<div class="container fs-15 fw-500 fc-medium-grey mt-6">자산</div>
+			<div class="toggle-item-box item-length2">
+				<toggle-button
+					v-for="budget in budgets.filter(b => b.isUse === 'Y')"
+					:key="budget"
+					:selected="budget.idx === budgetIdx"
+					:is-wrap="true"
+					@change="onChange(budget.idx)"
+				>
+					{{ budget.budgetName }}
+				</toggle-button>
+			</div>
 		</div>
-		<div
-			v-if="cards.length > 0 && selectedCode === 2 && isPayment"
-			class="toggle-item-box item-length2 mt-12 item-box-max-height"
-		>
-			<div class="container fs-15 fw-500 fc-medium-grey">카드</div>
-			<toggle-button
-				v-for="card in cards.filter(b => b.isUse === 'Y')"
-				:key="card"
-				:selected="card.idx === cardIdx"
-				:is-wrap="true"
-				@change="event.selectCard(card)"
-			>
-				{{ card.budgetName }}
-			</toggle-button>
+
+		<div v-if="cards.length > 0 && selectedCode === 2 && isPayment">
+			<div class="container fs-15 fw-500 fc-medium-grey mt-6">카드</div>
+			<div class="toggle-item-box item-length2 item-box-max-height">
+				<toggle-button
+					v-for="card in cards.filter(b => b.isUse === 'Y')"
+					:key="card"
+					:selected="card.idx === cardIdx"
+					:is-wrap="true"
+					@change="event.selectCard(card)"
+				>
+					{{ card.budgetName }}
+				</toggle-button>
+			</div>
 		</div>
 
 		<div class="container mt-10 fs-15 fw-500 fc-medium-grey">메모</div>

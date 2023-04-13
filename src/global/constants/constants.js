@@ -36,6 +36,14 @@ const transaction = Object.freeze({
 	],
 })
 
+const budget = Object.freeze({
+	BUDGET_TYPE: [
+		{ code: 0, title: '자산' },
+		{ code: 1, title: '카드' },
+		{ code: 2, title: '자동이체' },
+	],
+})
+
 const statistics = Object.freeze({
 	STATISTICS_REPORT_TYPE: [
 		{ code: 0, title: '월간' },
@@ -44,4 +52,4 @@ const statistics = Object.freeze({
 })
 const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토']
 
-export { provider, sns, dateType, displayText, dayOfWeek, loadingType, transaction, statistics }
+export { provider, sns, dateType, displayText, dayOfWeek, loadingType, transaction, statistics, budget }
