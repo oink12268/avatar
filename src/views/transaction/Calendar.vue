@@ -39,12 +39,12 @@
 						<div class="fs-10 ta-c">
 							{{ day.day }}
 						</div>
-						<div v-if="day.incomeAmount > 0" class="calendar-price fc-green2">
-							{{ $filters.currency(day.incomeAmount) }}
-						</div>
-						<div v-else class="calendar-price">&nbsp;</div>
 						<div v-if="day.paymentAmount > 0" class="calendar-price fc-red2">
 							{{ $filters.currency(day.paymentAmount) }}
+						</div>
+						<div v-else class="calendar-price">&nbsp;</div>
+						<div v-if="day.incomeAmount > 0" class="calendar-price fc-green2">
+							{{ $filters.currency(day.incomeAmount) }}
 						</div>
 						<div v-else class="calendar-price">&nbsp;</div>
 					</div>
