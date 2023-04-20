@@ -30,7 +30,7 @@ const loadingType = Object.freeze({
 
 const transaction = Object.freeze({
 	TRANSACTION_TYPE: [
-		{ code: 0, title: '현금' },
+		{ code: 0, title: '이체' },
 		{ code: 1, title: '페이' },
 		{ code: 2, title: '카드' },
 	],
