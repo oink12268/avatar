@@ -107,7 +107,7 @@ export default {
 		)
 		const budgets = ref([])
 		const cards = ref([])
-		const selectedTitle = ref('현금')
+		const selectedTitle = ref('이체')
 		const selectedCode = ref(0)
 		const budgetIdx = ref(0)
 		const cardIdx = ref(0)
