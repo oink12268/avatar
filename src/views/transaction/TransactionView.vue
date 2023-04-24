@@ -13,9 +13,9 @@
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
 					@click="event.delete(false, income.idx)"
 				>
-					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ income.memo }}</span>
-					<span class="ml-at fs-12">{{ income.budgetName }}</span>
-					<span class="ml-20 fs-12 fc-green2">{{ $filters.currency(income.amount) }}</span>
+					<span class="size-55 fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ income.memo }}</span>
+					<span class="fs-12">{{ $filters.getEllipsis(income.budgetName) }}</span>
+					<span class="ml-at fs-12 fc-green2">{{ $filters.currency(income.amount) }}</span>
 				</div>
 
 				<div
@@ -24,9 +24,9 @@
 					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
 					@click="event.delete(true, payment.idx)"
 				>
-					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ payment.memo }}</span>
-					<span class="ml-at fs-12">{{ payment.paymentName }}</span>
-					<span class="ml-20 fs-12 fc-red2">{{ $filters.currency(payment.amount) }}</span>
+					<span class="size-60 fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ payment.memo }}</span>
+					<span class="fs-12">{{ $filters.getEllipsis(payment.paymentName, 7) }}</span>
+					<span class="ml-at fs-12 fc-red2">{{ $filters.currency(payment.amount) }}</span>
 				</div>
 
 				<transaction-modal
@@ -51,10 +51,6 @@ import globalComposable from '@/composables/globalComposable'
 export default {
 	name: 'TransactionView',
 	components: { TransactionModal, Calendar },
-	// metaInfo: {
-	// 	title: 'Tripllo',
-	// 	meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' }],
-	// },
 	setup() {
 		const http = inject(provider.HTTP.VASELINE)
 		const selectedDate = ref(dayjs().format('YYYY-MM-DD'))

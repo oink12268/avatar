@@ -45,22 +45,24 @@
 							<template #customTitle2></template>
 						</tab-button>
 					</div>
-					<div v-if="selectedCode !== 2">
-						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">
-							{{ selectedCode === 0 ? '자산명' : '카드명' }}
-						</div>
-						<div class="input-field-line-con value-check active">
-							<input type="text" placeholder="자산명 또는 카드명" v-model="budget.budgetName" />
-						</div>
+					<div class="container mt-15 fs-12 fw-500 fc-medium-grey">{{ tabs[selectedCode].title }}명</div>
+					<div class="input-field-line-con value-check active">
+						<input type="text" placeholder="자산명 또는 카드명" v-model="budget.budgetName" />
 					</div>
-					<div v-if="selectedCode === 0">
-						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">금액</div>
+					<div v-if="selectedCode === 0 || selectedCode === 2">
+						<div class="container mt-15 fs-12 fw-500 fc-medium-grey">금액</div>
 						<div class="input-field-line-con value-check active">
 							<input type="number" v-model="budget.balance" />
 						</div>
 					</div>
+					<div v-if="selectedCode === 2">
+						<div class="container mt-15 fs-12 fw-500 fc-medium-grey">날짜</div>
+						<div class="input-field-line-con value-check active">
+							<input type="number" placeholder="ex) 5" v-model="transferDate" />
+						</div>
+					</div>
 					<div v-if="selectedCode === 1">
-						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">카드 종류</div>
+						<div class="container mt-15 fs-12 fw-500 fc-medium-grey">카드 종류</div>
 						<div class="toggle-item-box item-length2 mt-6 item-box-max-height">
 							<toggle-button
 								v-for="card in cardKinds"
@@ -73,29 +75,43 @@
 							</toggle-button>
 						</div>
 					</div>
-					<div v-if="selectedCode === 1 && selectedCard === 0">
-						<div class="container mt-25 fs-12 fw-500 fc-medium-grey">카드 은행</div>
+					<div class="container mt-15 fs-12 fw-500 fc-medium-grey">이체 은행</div>
+					<div class="toggle-item-box item-length2 mt-6">
+						<toggle-button
+							v-for="budget in budgets.filter(b => b.isUse !== 'N')"
+							:key="budget"
+							:selected="budget.idx === selectedBudget"
+							:is-wrap="true"
+							class="hp-10 pv-5"
+							@change="onChangeBudget(budget.idx)"
+						>
+							{{ budget.budgetName }}
+						</toggle-button>
+					</div>
+
+					<div v-if="selectedCode === 2">
+						<div class="container mt-15 fs-12 fw-500 fc-medium-grey">입금 은행</div>
 						<div class="toggle-item-box item-length2 mt-6">
 							<toggle-button
-								v-for="budget in budgets.filter(b => b.isUse !== 'N')"
+								v-for="budget in budgets.filter(b => b.budgetName !== '현금')"
 								:key="budget"
-								:selected="budget.idx === selectedBudget"
+								:selected="budget.idx === selectedBudgetDeposit"
 								:is-wrap="true"
 								class="hp-10 pv-5"
-								@change="onChangeBudget(budget.idx)"
+								@change="onChangeDepositBudget(budget.idx)"
 							>
 								{{ budget.budgetName }}
 							</toggle-button>
 						</div>
 					</div>
 
-					<div class="dp-f container align-items-center mt-25">
+					<div class="dp-f container align-items-center mt-15">
 						<div class="flex1 fw-500 ellipsis fs-16">사용여부</div>
 						<div class="ml-at dp-if align-items-center">
 							<switch-button id="DELIVERY_COMPLETE" v-model="isUse" />
 						</div>
 					</div>
-					<div class="container dp-f align-items-center mt-25">
+					<div class="container dp-f align-items-center mt-15">
 						<button class="button-rectangle size-100 large hp-54" @click="event.save">
 							{{ isEdit ? '수정' : '저장' }}
 						</button>
@@ -113,10 +129,13 @@ import BottomModal from '@/components/popup/BottomModal'
 import { provider, budget as budgetConst } from '@/global/constants/constants'
 import SwitchButton from '@/components/common/SwitchButton'
 import TabButton from '@/components/common/TabButton'
+import globalComposable from '@/composables/globalComposable'
+
 export default {
 	name: 'BudgetView',
 	components: { BudgetModal, BottomModal, SwitchButton, TabButton },
 	setup() {
+		const { alert } = globalComposable()
 		const http = inject(provider.HTTP.VASELINE)
 		const isOpen = ref(false)
 		const isEdit = ref(false)
@@ -139,6 +158,9 @@ export default {
 		})
 		const selectedCard = ref(0)
 		const selectedBudget = ref(0)
+		const selectedBudgetDeposit = ref(0)
+		const transferDate = ref(0)
+
 		const tabs = ref(
 			Object.freeze([
 				{
@@ -178,7 +200,7 @@ export default {
 							isOpen.value = false
 						})
 					}
-				} else {
+				} else if (selectedCode.value === 1) {
 					budget.value.isCredit = selectedCard.value === 0 ? 'N' : 'Y'
 					budget.value.budgetIdx = selectedBudget.value
 					if (isEdit.value) {
@@ -190,11 +212,23 @@ export default {
 							isOpen.value = false
 						})
 					}
+				} else if (selectedCode.value === 2) {
+					budget.value.budgetIdx = selectedBudget.value
+					budget.value.budgetDepositIdx = selectedBudgetDeposit.value
+					if (transferDate.value !== 0) {
+						budget.value.transferDate = transferDate.value
+
+						http.post('/api/app/auto-pay', budget.value).then(res => {
+							isOpen.value = false
+						})
+					} else {
+						// alert('이체 날짜를 입력해 주세요.')
+					}
+					console.log(budget.value)
 				}
 			},
 			change: {
 				tab: (title, payload) => {
-					console.log(title, payload)
 					if (selectedCode.value !== payload.code) {
 						selectedCode.value = payload.code
 						selectedTitle.value = title
@@ -225,6 +259,10 @@ export default {
 
 		const onChangeBudget = idx => {
 			selectedBudget.value = idx
+		}
+
+		const onChangeDepositBudget = idx => {
+			selectedBudgetDeposit.value = selectedBudgetDeposit.value === idx ? 0 : idx
 		}
 
 		const getBudgets = () => {
@@ -264,11 +302,14 @@ export default {
 			selectedCard,
 			onChangeCard,
 			onChangeBudget,
+			onChangeDepositBudget,
 			selectedBudget,
+			selectedBudgetDeposit,
 			cardKinds,
 			selectedTitle,
 			selectedCode,
 			autoPay,
+			transferDate,
 		}
 	},
 }
