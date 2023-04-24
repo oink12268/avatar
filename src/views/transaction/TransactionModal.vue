@@ -123,7 +123,7 @@ export default {
 			]),
 		)
 		const selectedCode = ref(0)
-		const selectedTitle = ref('현금')
+		const selectedTitle = ref('이체')
 
 		const event = {
 			save: () => {
