@@ -29,6 +29,18 @@
 				</div>
 				<div v-if="cards.length <= 0" class="flex-center pv-20 fc-grey">카드를 추가하세요.</div>
 
+				<div class="container mt-20 mb-5 fs-20 fw-500 fc-medium-grey">자동이체</div>
+				<div
+					v-for="(autoPay, no) in autoPays"
+					:key="no"
+					class="dp-f container pv-12 pl-12 pr-8 align-items-center bdr-8 bd-light-grey mb-12"
+				>
+					<span class="fw-500 fc-medium-grey ellipsis" style="min-width: 40px">{{ autoPay.memo }}</span>
+					<button class="ml-at dp-if align-items-center flex-shrink-none">
+						<span class="fs-12 fc-blue">{{ $filters.currency(autoPay.amount) }}</span>
+					</button>
+				</div>
+
 				<div class="ta-r"><img class="wh-50" :src="$filters.getImagePath('plus_big.png')" @click="event.new" /></div>
 				<bottom-modal :is-open="isOpen" @close="isOpen = false">
 					<div v-if="!isEdit" class="toggle-item-box item-length2 mt-12 item-box-max-height">
@@ -141,6 +153,7 @@ export default {
 		const isEdit = ref(false)
 		const budgets = ref([])
 		const cards = ref([])
+		const autoPays = ref([])
 		const budget = ref({
 			idx: 1,
 			budgetName: '',
@@ -215,15 +228,12 @@ export default {
 				} else if (selectedCode.value === 2) {
 					budget.value.budgetIdx = selectedBudget.value
 					budget.value.budgetDepositIdx = selectedBudgetDeposit.value
-					if (transferDate.value !== 0) {
-						budget.value.transferDate = transferDate.value
+					budget.value.transferDate = transferDate.value
 
-						http.post('/api/app/auto-pay', budget.value).then(res => {
-							isOpen.value = false
-						})
-					} else {
-						// alert('이체 날짜를 입력해 주세요.')
-					}
+					http.post('/api/app/auto-pay', budget.value).then(res => {
+						isOpen.value = false
+					})
+
 					console.log(budget.value)
 				}
 			},
@@ -258,7 +268,7 @@ export default {
 		}
 
 		const onChangeBudget = idx => {
-			selectedBudget.value = idx
+			selectedBudget.value = selectedBudget.value === idx ? 0 : idx
 		}
 
 		const onChangeDepositBudget = idx => {
@@ -276,8 +286,15 @@ export default {
 				cards.value = res
 			})
 		}
+
+		const getAutoPays = () => {
+			http.get('api/app/auto-pay').then(res => {
+				autoPays.value = res
+			})
+		}
 		getBudgets()
 		getCards()
+		getAutoPays()
 
 		watch(
 			() => isOpen.value,
@@ -285,6 +302,7 @@ export default {
 				if (!isOpen.value) {
 					getBudgets()
 					getCards()
+					getAutoPays()
 				}
 			},
 		)
@@ -292,6 +310,7 @@ export default {
 		return {
 			budgets,
 			cards,
+			autoPays,
 			tabs,
 			budget,
 			isOpen,
