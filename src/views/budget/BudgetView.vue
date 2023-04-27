@@ -87,18 +87,20 @@
 							</toggle-button>
 						</div>
 					</div>
-					<div class="container mt-15 fs-12 fw-500 fc-medium-grey">이체 은행</div>
-					<div class="toggle-item-box item-length2 mt-6">
-						<toggle-button
-							v-for="budget in budgets.filter(b => b.isUse !== 'N')"
-							:key="budget"
-							:selected="budget.idx === selectedBudget"
-							:is-wrap="true"
-							class="hp-10 pv-5"
-							@change="onChangeBudget(budget.idx)"
-						>
-							{{ budget.budgetName }}
-						</toggle-button>
+					<div v-if="!isEdit">
+						<div class="container mt-15 fs-12 fw-500 fc-medium-grey">이체 은행</div>
+						<div class="toggle-item-box item-length2 mt-6">
+							<toggle-button
+								v-for="budget in budgets.filter(b => b.isUse !== 'N')"
+								:key="budget"
+								:selected="budget.idx === selectedBudget"
+								:is-wrap="true"
+								class="hp-10 pv-5"
+								@change="onChangeBudget(budget.idx)"
+							>
+								{{ budget.budgetName }}
+							</toggle-button>
+						</div>
 					</div>
 
 					<div v-if="selectedCode === 2">
@@ -117,7 +119,7 @@
 						</div>
 					</div>
 
-					<div class="dp-f container align-items-center mt-15">
+					<div v-if="selectedCode !== 2" class="dp-f container align-items-center mt-15">
 						<div class="flex1 fw-500 ellipsis fs-16">사용여부</div>
 						<div class="ml-at dp-if align-items-center">
 							<switch-button id="DELIVERY_COMPLETE" v-model="isUse" />
