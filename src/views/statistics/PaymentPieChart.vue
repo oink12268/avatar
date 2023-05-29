@@ -131,11 +131,6 @@ export default {
 						payPieChart.data.datasets[0].data = payPieChart.data.datasets[0].data.slice(0, 5)
 						payPieChart.data.datasets[0].data.push(etcPayAmount)
 
-						const etcTooltipPaymentAmount = payPieChart.data.datasets[0].tooltipData
-							.map(item => item.paymentAmount.replace(/,/g, ''))
-							.reduce((a, b, i) => {
-								return i >= 5 ? Number(a) + Number(b) : 0
-							})
 						const etcTooltipRate = payPieChart.data.datasets[0].tooltipData
 							.map(item => item.rate)
 							.reduce((a, b, i) => {
